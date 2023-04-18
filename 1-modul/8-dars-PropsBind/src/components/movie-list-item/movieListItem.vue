@@ -1,12 +1,12 @@
 <template >
-  <li class="list-group-item d-flex justify-content-between "> 
-    <span class="list-group-item-lable">kino 1</span>
-    <input type="number" class="list-group-item-input" defaultValue="811">
+  <li class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favourite: movie.favourite}]">  <!--Bu yerda if shart ishlayapti :class bilan-->
+    <span class="list-group-item-lable">{{ movie.name }}</span>
+    <input type="number" class="list-group-item-input"  :value="movie.viewers">
     <div class="d-flex justify-content-center align-items-center">
         <button type="button" class="btn-cookie btn-sm">
             <i class="fas fa-cookie"></i>
         </button>
-        <button type="button" class="btn-trash btn-sm">
+        <button type="button" class="btn-trash btn-sm" >
             <i class="fas fa-trash"></i>
         </button>
        
@@ -14,25 +14,17 @@
        
     </div>
   </li>
-  <li class="list-group-item d-flex justify-content-between favourite"> 
-    <span class="list-group-item-lable">kino 1</span>
-    <input type="number" class="list-group-item-input" defaultValue="811">
-    <div class="d-flex justify-content-center align-items-center">
-        <button type="button" class="btn-cookie btn-sm">
-            <i class="fas fa-cookie"></i>
-        </button>
-        <button type="button" class="btn-trash btn-sm">
-            <i class="fas fa-trash"></i>
-        </button>
-       
-            <i class="fas fa-star"></i>
-       
-    </div>
-  </li>
+ <!-- @ - onclic xodisasi shunday berilayatgandi v-bind:onClick yoki  @click-->
+ <!-- : bilan esa bind ni berish mumkin yoki v-bind misol uchun v-bind:value="movie.viewers" yoki shuni :value="movie.viewers" shu korinishda -->
 </template>
 <script>
 export default {
-   
+   props:{
+    movie:{
+      type: Object,
+      required: true
+    }
+   }
 }
 </script>
 <style scoped >
@@ -70,8 +62,11 @@ export default {
     cursor: pointer;
     border-radius: 5px;
     background-color: aliceblue;
-   }
-
+  }
+  .list-group-item button:hover{
+  background-color: rgb(215, 245, 254);
+  
+}
    .list-group-item  .btn-cookie{
     color: #e09f3e;
    }
