@@ -1,0 +1,26 @@
+<template lang="">
+    <div class="movie-list list-group">
+        <h3>Movie List</h3>
+        <MovieListItem/>
+    </div>
+</template>
+<script>
+
+import MovieListItem from "@/components/movie-list-item/movieListItem.vue"
+export default {
+    components:{
+        MovieListItem,
+    }
+}
+</script>
+<style scoped>
+
+    .movie-list{
+    margin-top: 25px;
+    padding: 1.5rem;
+    border-radius: 4px;
+    background-color: #fcfcf5;
+    border-radius: 4px;
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+    }
+</style>
