@@ -2,12 +2,12 @@
   <div class="container mt-3">
     <div class="app font-monospace">
       <div class="content">
-        <AppInfo/>
+        <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
         <div class="search-panel">
           <SearchPanel/>
           <AppFilter/>
         </div>
-        <MovieList>MovieList</MovieList>
+        <MovieList :movies="movies"/>
         <MovieAddForm/>
       </div>
     </div>
@@ -19,8 +19,51 @@ import SearchPanel from "@/components/search-panel/SearchPanel.vue"
 import AppFilter from "@/components/app-filter/appFilter.vue"
 import MovieList from "@/components/movie-list/movieList.vue"
 import MovieAddForm from "@/components/movie-add-form/movieAddForm.vue"
+
 export default {
-  components:{AppInfo,SearchPanel,AppFilter,MovieList,MovieAddForm}
+  components:{AppInfo,SearchPanel,AppFilter,MovieList,MovieAddForm},
+    data(){
+        return {
+            movies:[
+                {
+                name: "Umar",
+                viewers:505,
+                favourite: true,
+                like: true
+            },
+            {
+                name: "Usmon New Film",
+                viewers:525,
+                favourite: false,
+                like: true
+            },
+            {
+                name: "Kino1",
+                viewers:75,
+                favourite: true,
+                like: true
+            },
+            {
+                name: "Film1",
+                viewers:55,
+                favourite: true,
+                like: false
+            },
+            {
+                name: "Film2",
+                viewers:155,
+                favourite: false,
+                like: false
+            },
+            {
+                name: "Film3",
+                viewers:775,
+                favourite: true,
+                like: false
+            },
+        ],
+        }
+    }
 }
 </script>
 <style>
