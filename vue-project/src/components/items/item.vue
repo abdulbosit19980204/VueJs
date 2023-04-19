@@ -1,11 +1,11 @@
 <template >
     <div class="mx-2 float-start mb-2">
         <div class="card" style="width: 18rem;">
-  <img src="@/assest/img/item1.png" class="card-img-top" alt="...">
+  <img :src="item.itemImgSrc"  class="card-img-top" alt="...">
   <div class="card-body card-border">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <h4 class="card-title fw-bold">$50.10</h4>
-      <p class="fw-lighter">Lighter weight text (relative to the parent element).</p>          
+      <p class="card-text">{{ item.itemInfo }}</p>
+      <h4 class="card-title fw-bold">${{ item.itemCost }} <span class="ms-5 text-success fs-6 p-1 bg-success bg-opacity-10 border rounded d-none">50% OFF</span></h4> 
+      <p class="fw-lighter">{{ item.itemDesc }}</p>          
       <div class="d-flex justify-content-around ">
        <div class="align-top d-flex fs-6">
         <i class="fas fa-star star-ico"></i>
@@ -27,7 +27,12 @@
 </template>
 <script>
 export default {
-    
+    props:{
+        item:{
+            type: Object,
+            required: true,
+        }
+    }
 }
 </script>
 <style scoped>

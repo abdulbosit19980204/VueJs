@@ -11,13 +11,11 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Register</a>
         </li>
-        <li class="nav-item">
-          <form class="d-flex search-form mx-5 justify-content-center fw-lighter" role="search">
-            <!-- <i class="far fa-search">s</i> -->
-            <i class="fas fa-magnifying-glass mx-2 mt-2"></i>
-            <input class="form-control me-2" type="text" placeholder="useless items on white background" aria-label="Search">
-            <!-- <button type="button" class="btn-close xbtn"><i class="bi bi-x-lg"></i></button> -->
-            <i class="fas fa-xmark mx-3 mt-2"></i>
+        <li class="nav-item ">
+          <form class="d-flex search-form mx-5 justify-content-center fw-lighter input-group" role="search">
+            <i class="fas fa-search input-group-text "></i>
+           <input class="form-control" type="text" placeholder="useless items on white background" aria-label="Search">
+           <i class="fas fa-xmark input-group-text"></i>
           </form>
         </li>
         <li class="nav-item ">
@@ -87,4 +85,18 @@ export default {
         height: 40px;
         border-radius: 505%;
     }
+    .input-group{
+      
+      align-items: center;
+     
+    }
+    .input-group-text{
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      color: #787885;
+    }
+    .form-control:focus {
+  box-shadow: inset 0 0 0 #ddd;
+}
 </style>
