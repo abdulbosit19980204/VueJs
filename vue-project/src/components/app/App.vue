@@ -2,8 +2,12 @@
    <menuNav/>
  <FilterType/>
  <div class="container d-flex">
+ <div class="col-3">
    <FilterLeft/>
+ </div>
+ <div class="col-9">
      <Items/>
+ </div>
 
  </div>
 </template>

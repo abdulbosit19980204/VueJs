@@ -1,5 +1,5 @@
 <template >
-    <div class="col-3">
+    <div class="col-12">
 
 
   <button class="btn btn-outline-primary w-100 mt-2 mb-5 fs-5 fw-medium"><i class="fas fa-arrow-down-wide-short"></i> Departments</button>
