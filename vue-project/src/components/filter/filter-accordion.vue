@@ -1,15 +1,16 @@
 <template >
+
     <div class="accordion-item mb-3">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           
-          Collapsed filters
+         {{ FilterTypeName.filterType }}
 
         </button>
       </h2>
       <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <filterAccordionItem v-for="filterItem in filterItems"/>
+          <filterAccordionItem v-for="filterItem in filterItems" v-bind:filterItem="filterItem"/>
           
           </div>
       </div>
@@ -17,9 +18,10 @@
 </template>
 <script>
 import filterAccordionItem from './filter-accordion-item.vue';
+
 export default {
     components:{
-        filterAccordionItem,
+        filterAccordionItem
     },
     props:{
         FilterTypeName:{
@@ -30,16 +32,22 @@ export default {
         return {
             filterItems:[
                 {
-            filterItemName: "Collapsed filters"
-         },
-          {
-            filterItemName: "Recomended"
+            filterItemName: "Recommended"
          },
           {
             filterItemName: "Recently Added"
          },
           {
-            filterItemName: "Recently Added"
+            filterItemName: "Expiring Soon"
+         },
+          {
+            filterItemName: "Most Rated"
+         },
+          {
+            filterItemName: "Price: Low → High"
+         },
+          {
+            filterItemName: "Price: High → Low"
          },
 
             ]
