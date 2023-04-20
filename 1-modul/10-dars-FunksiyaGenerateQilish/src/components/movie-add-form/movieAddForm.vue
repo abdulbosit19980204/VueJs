@@ -14,7 +14,7 @@ export default {
     
 }
 </script>
-<style >
+<style>
 .movie-add-form{
     margin-top: 30px;
     padding: 1.5rem;
