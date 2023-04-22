@@ -29,7 +29,7 @@ export default {
                 name: this.name,
                 viewers:this.viewers,
                 favourite: false,
-                
+                id: Date.now(),
             }
             
             this.$emit("createMovie",newMovie)

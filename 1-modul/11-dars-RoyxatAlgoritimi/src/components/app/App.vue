@@ -29,37 +29,43 @@ export default {
                 name: "Umar",
                 viewers:505,
                 favourite: true,
-                like: true
+                like: true,
+                id:1
             },
             {
                 name: "Usmon New Film",
                 viewers:525,
                 favourite: false,
-                like: true
+                like: true,
+                id:2
             },
             {
                 name: "Kino1",
                 viewers:75,
                 favourite: true,
-                like: true
+                like: true,
+                id:3
             },
             {
                 name: "Film1",
                 viewers:55,
                 favourite: true,
-                like: false
+                like: false,
+                id:4,
             },
             {
                 name: "Film2",
                 viewers:155,
                 favourite: false,
-                like: false
+                like: false,
+                id:5,
             },
             {
                 name: "Film3",
                 viewers:775,
                 favourite: true,
-                like: false
+                like: false,
+                id:6
             },
         ],
         }
