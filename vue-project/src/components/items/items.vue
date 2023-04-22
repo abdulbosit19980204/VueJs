@@ -45,12 +45,14 @@
         </div>
     </div>
    
+<Selling @createProduct="createProduct"/>
 </template>
 <script>
 import Item from '@/components/items/item.vue'
+import Selling from '@/components/admin/selling/sell.vue'
 export default {
     components:{
-        Item,
+        Item,Selling
     },
     data() {
         return {
@@ -112,7 +114,25 @@ export default {
             ]
         }
     },
-
+methods: {
+    addProduct(){
+        const newProduct ={
+            itemImgSrc: this.itemImgSrc,
+            itemInfo:   this.itemInfo,
+            itemCost:   this.itemCost,
+            itemDesc:   this.itemDesc
+        }
+      
+        this.$emit("createProduct", newProduct)
+        this.itemCost     =''
+        this.itemDesc     =''
+        this.itemImgSrc   =''
+        this.itemInfo     =''
+    },
+    createProduct(product){
+    this.items.push(product)
+    }
+},
 
 }
 </script>
