@@ -1,7 +1,9 @@
 <template >
-  <li class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favourite: movie.favourite}]">  <!--Bu yerda if shart ishlayapti :class bilan-->
-    <span class="list-group-item-lable">{{ movie.name }}</span>
+  <li  class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favourite: movie.favourite}]">  <!--Bu yerda if shart ishlayapti :class bilan-->
+   
+    <span @click="onLike" class="list-group-item-lable">{{ movie.name }}</span>
     <input type="number" class="list-group-item-input"  :value="movie.viewers">
+   
     <div class="d-flex justify-content-center align-items-center">
         <button type="button" class="btn-cookie btn-sm">
             <i class="fas fa-cookie"></i>
@@ -9,9 +11,7 @@
         <button type="button" class="btn-trash btn-sm" >
             <i class="fas fa-trash"></i>
         </button>
-       
-            <i class="fas fa-star"></i>
-       
+        <i class="fas fa-star"></i>
     </div>
   </li>
  <!-- @ - onclic xodisasi shunday berilayatgandi v-bind:onClick yoki  @click-->
@@ -22,9 +22,14 @@ export default {
    props:{
     movie:{
       type: Object,
-      required: true
+      required: true,
+    },
+   },
+   methods: {
+    onLike(){
+      this.$emit('onLike', this.movie.id)
     }
-   }
+   },
 }
 </script>
 <style scoped >

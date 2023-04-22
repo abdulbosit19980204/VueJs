@@ -1,7 +1,7 @@
 <template>
     <ul class="movie-list list-group" >
         <h3>Movie List</h3>
-        <MovieListItem v-for="movie in movies" v-bind:movie="movie" :key="movie.id" />
+        <MovieListItem v-for="movie in movies" v-bind:movie="movie" :key="movie.id" @onLike='$emit("onLike",movie.id)' />
            
     </ul>
 </template>
