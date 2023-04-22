@@ -44,6 +44,7 @@ export default {
    methods: {
     addProduct(){
         const newProduct ={
+            id: Date.now(),
             itemImgSrc: this.itemImgSrc,
             itemInfo:   this.itemInfo,
             itemCost:   this.itemCost,
