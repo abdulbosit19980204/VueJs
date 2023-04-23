@@ -5,7 +5,7 @@
     <input type="number" class="list-group-item-input"  :value="movie.viewers">
    
     <div class="d-flex justify-content-center align-items-center">
-        <button type="button" class="btn-cookie btn-sm">
+        <button @click="onFovourite" type="button" class="btn-cookie btn-sm" >
             <i class="fas fa-cookie"></i>
         </button>
         <button type="button" class="btn-trash btn-sm" >
@@ -28,6 +28,9 @@ export default {
    methods: {
     onLike(){
       this.$emit('onLike', this.movie.id)
+    },
+    onFovourite(){
+      this.$emit('onFovourite',this.movie.id)
     }
    },
 }

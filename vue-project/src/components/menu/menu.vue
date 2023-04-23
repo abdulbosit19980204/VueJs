@@ -26,9 +26,10 @@
     </ul>
     <div class="d-flex justify-content-end">
         <button class="btn btn-outline-primary mx-2" type="submit">Sign In</button>
-        <button class="btn btn-light mx-3 cart-btn position-relative" type="submit">My cart 
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" > 5 </span>
+        <button class="btn btn-light mx-3 cart-btn position-relative" type="submit" >My cart 
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >5 </span>
         </button>
+        
         <img src="@/assest/img/user.jpg" alt="" class="user-shape">
     </div>
 
@@ -40,7 +41,7 @@
 </template>
 <script>
 export default {
-    
+      
 }
 </script>
 <style scoped>

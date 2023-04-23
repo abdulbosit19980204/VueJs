@@ -1,5 +1,5 @@
 <template>
-  <menuNav />
+  <menuNav/>
   <FilterType />
   <div class="container d-flex">
     <div class="col-3">

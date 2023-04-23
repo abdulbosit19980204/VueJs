@@ -18,7 +18,7 @@
   btn-filter-active" ><i class="fas fa-border-all"></i></button> </div> </div> </div> <div
   class="row "> <div class="mx-1 d-flex flex-wrap "> 
   <Item v-for="item in items"
-  v-bind:item="item" :key="items.id" @onLike="onLikeHandler" @onLiked="onLikedHandler"/> </div> </div> <Selling
+  v-bind:item="item" :key='items.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" :likedCounts="items.filter(c=>c.liked).length" /> </div> </div> <Selling
   @createProduct="createProduct"/>
 </template>
 <script>
@@ -158,7 +158,9 @@ export default {
         if(i.id==id)i.liked=!i.liked;
       });
       
-    }
+    },
+  
+    
   },
 };
 </script>
