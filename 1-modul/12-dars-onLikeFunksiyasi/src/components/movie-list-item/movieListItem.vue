@@ -14,7 +14,7 @@
         <i class="fas fa-star"></i>
     </div>
   </li>
- <!-- @ - onclic xodisasi shunday berilayatgandi v-bind:onClick yoki  @click-->
+ <!-- @ - onclick xodisasi shunday berilayatgandi v-bind:onClick yoki  @click-->
  <!-- : bilan esa bind ni berish mumkin yoki v-bind misol uchun v-bind:value="movie.viewers" yoki shuni :value="movie.viewers" shu korinishda -->
 </template>
 <script>
@@ -90,8 +90,8 @@ export default {
     opacity: 0  ;
    }
    .list-group-item.like .fa-star{
-opacity: 1;
-transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
    }
 
    .list-group-item.favourite .list-group-item-lable{
