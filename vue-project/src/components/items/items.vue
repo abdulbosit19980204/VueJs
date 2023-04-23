@@ -16,8 +16,9 @@
   btn-outline-primary btn-filter btn-filter-view ms-3"><i class="fas
   fa-list"></i></button> <button class="btn btn-outline-primary btn-filter btn-filter-view
   btn-filter-active" ><i class="fas fa-border-all"></i></button> </div> </div> </div> <div
-  class="row "> <div class="mx-1 d-flex flex-wrap "> <Item v-for="item in items"
-  v-bind:item="item" :key="items.id" @onLike="onLikeHandler" /> </div> </div> <Selling
+  class="row "> <div class="mx-1 d-flex flex-wrap "> 
+  <Item v-for="item in items"
+  v-bind:item="item" :key="items.id" @onLike="onLikeHandler" @onLiked="onLikedHandler"/> </div> </div> <Selling
   @createProduct="createProduct"/>
 </template>
 <script>
@@ -39,6 +40,7 @@ export default {
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
+          liked: false,
         },
         {
           id: 2,
@@ -48,6 +50,7 @@ export default {
           itemCost: 13.95,
           itemDesc: "1258 bids, 359 watchers $5.95 for shipping",
           star: false,
+          liked: false,
         },
         {
           id: 3,
@@ -57,6 +60,7 @@ export default {
           itemCost: 128.99,
           itemDesc: "Eligible for nothing :(",
           star: false,
+          liked: false,
         },
         {
           id: 4,
@@ -66,6 +70,7 @@ export default {
           itemCost: 12.48,
           itemDesc: "Wordwide shitting available Buyers protection possible!",
           star: false,
+          liked: false,
         },
         {
           id: 5,
@@ -76,6 +81,7 @@ export default {
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
+          liked: false,
         },
         {
           id: 6,
@@ -86,6 +92,7 @@ export default {
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
+          liked: false,
         },
         {
           id: 7,
@@ -96,6 +103,7 @@ export default {
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
+          liked: false,
         },
         {
           id: 8,
@@ -106,6 +114,7 @@ export default {
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
+          liked: false,
         },
         {
           id: 9,
@@ -116,6 +125,7 @@ export default {
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
+          liked: false,
         },
       ],
     };
@@ -143,6 +153,12 @@ export default {
         if (i.id == id) i.star = !i.star;
       });
     },
+    onLikedHandler(id){
+      this.items.forEach((i)=>{
+        if(i.id==id)i.liked=!i.liked;
+      });
+      
+    }
   },
 };
 </script>

@@ -42,8 +42,8 @@
             <h5 class="mx-2 fs-5">4.05</h5>
           </div>
           <div class="d-flex justify-content-end">
-            <a href="#" class="btn btn-outline-primary"
-              ><i class="far fa-heart"></i> Watch</a
+            <a  class="btn btn-outline-primary"
+            @click="onLiked"><i class="far fa-heart" :class="[{liked: item.liked}]"></i> Watch</a
             >
           </div>
         </div>
@@ -64,6 +64,11 @@ export default {
       this.$emit("onLike", this.item.id);
       // console.log(this.item.id);
     },
+    onLiked(){
+      this.$emit("onLiked", this.item.id)
+      // console.log(this.item.id);
+      
+    }
   },
 };
 </script>
@@ -85,4 +90,7 @@ export default {
 .star {
   color: rgb(249, 249, 18);
 }
+.liked{
+  color: red;
+  }
 </style>
