@@ -1,8 +1,12 @@
 <template lang="">
 <div class="btn-group mt-3">
-    <button class="btn " type='button' :class="[filterName=='all' ? 'btn-dark' : 'btn-outline-dark' ]" @click ='filterHandler("all")'>Barcha kinolar</button>
-    <button class="btn " type='button' :class="[filterName=='popular' ? 'btn-dark' : 'btn-outline-dark' ]" @click ='filterHandler("popular")'>Mashxur kinolar</button>
-    <button class="btn " type='button' :class="[filterName=='mostViewers' ? 'btn-dark' : 'btn-outline-dark' ]" @click ='filterHandler("mostViewers")'>Eng kop korilgan kinolar</button>
+    <button v-for="btn in filterButtons " 
+    :key="btn.name" class="btn" 
+    :class="[filterName==btn.name ? 'btn-dark' :'btn-outline-dark' ]"
+    @click="filterHandler(btn.name)" >
+    {{btn.title}}
+    </button>
+   
 </div>
 </template>
 <script>
@@ -10,6 +14,22 @@ export default {
     data() {
         return {
             filter:'all',
+            filterButtons:[
+                {
+                title:"Barcha kinolar",
+                name:"all"
+                },
+                {
+                title:"Mashxur kinolar",
+                name:"popular"
+                },
+                {
+                title:"Eng kop korilgan kinolar",
+                name:"mostViewers"
+                },
+        ]
+               
+            
         }
     },
     props:{
