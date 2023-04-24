@@ -157,18 +157,20 @@ export default {
   },
   methods: {
     addProduct() {
+      if(!this.itemCost || !this.itemInfo || !this.itemDesc || !this.itemImgSrc)return
       const newProduct = {
         itemImgSrc: this.itemImgSrc,
         itemInfo: this.itemInfo,
         itemCost: this.itemCost,
         itemDesc: this.itemDesc,
       };
-
+      
       this.$emit("createProduct", newProduct);
       this.itemCost = "";
       this.itemDesc = "";
       this.itemImgSrc = "";
       this.itemInfo = "";
+      
     },
     createProduct(product) {
       this.items.push(product);
