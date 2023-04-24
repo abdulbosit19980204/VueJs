@@ -1,5 +1,5 @@
 <template>
-  <a href="#" class="nav-link mt-3 mb-5">
+  <a href="#" class="nav-link mt-3 mb-5" >
     <h6 class="fw-lighter text text-center mx-2" :class="[{ active: menu.active }]">
       <i v-bind:class="menu.menuClassName"></i><br />
       {{ menu.menuName }}

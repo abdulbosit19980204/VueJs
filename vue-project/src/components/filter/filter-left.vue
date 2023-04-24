@@ -32,41 +32,52 @@ export default {
         {
           filterType: "Collapsed filters",
           dataBsParent: "#accordionExample",
+          id: 1,
         },
         {
           filterType: "Expanded filters",
           dataBsParent: "#accordionExample",
+          id: 2,
         },
         {
           filterType: "Year of manufacturing",
           dataBsParent: "#accordionExample",
+          id: 3,
         },
         {
           filterType: "Coutries of Manufacturing",
           dataBsParent: "#accordionExample",
+          id: 4,
         },
       ],
       categoriesTypeItems: [
         {
           typeName: "All Categories",
+          id: 1,
         },
         {
           typeName: "Electronics",
+          id: 2,
         },
         {
           typeName: "Business & Industrial",
+          id: 3,
         },
         {
           typeName: "Computers",
+          id: 4,
         },
         {
           typeName: "Consumer Electroinics",
+          id: 5,
         },
         {
           typeName: "Home & Garden",
+          id: 6,
         },
         {
           typeName: "Collectibles",
+          id: 7,
         },
       ],
     };
