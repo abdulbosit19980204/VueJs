@@ -1,25 +1,50 @@
 <template lang="">
-  <div class="row mb-5 d-flex"> <div class=" mx-3 d-flex col-5 mt-2 justfiy-content-start"
-  > <div class="d-flex col-5 "> <select class="form-select" aria-label="Default select
-  example"> <option selected >Useless first</option> <option value="1">One</option>
-  <option value="2">Two</option> <option value="3">Three</option> </select> </div> <div
-  class="col-3 mx-1"> <select class="form-select" aria-label="Default select example">
-  <option selected>Condition</option> <option value="1">One</option> <option
-  value="2">Two</option> <option value="3">Three</option> </select> </div> <div
-  class="col-4 "> <select class="form-select" aria-label="Default select example"> <option
-  selected>Delivery options</option> <option value="1">One</option> <option
-  value="2">Two</option> <option value="3">Three</option> </select> </div> </div> <div
-  class="row col-6 mt-2 justfiy-content-end"> <div class="d-flex mx-5 justify-content-end
-  ms-5"> <button class="btn btn-outline-primary btn-filter">Show all</button> <button
-  class="btn btn-outline-primary btn-filter btn-filter-active">Auction</button> <button
-  class="btn btn-outline-primary btn-filter ">Buy now</button> <button class="btn
-  btn-outline-primary btn-filter btn-filter-view ms-3"><i class="fas
-  fa-list"></i></button> <button class="btn btn-outline-primary btn-filter btn-filter-view
-  btn-filter-active" ><i class="fas fa-border-all"></i></button> </div> </div> </div> <div
-  class="row "> <div class="mx-1 d-flex flex-wrap "> 
-  <Item v-for="item in items"
-  v-bind:item="item" :key='items.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" :likedCounts="items.filter(c=>c.liked).length" /> </div> </div> <Selling
-  @createProduct="createProduct"/>
+   <div class="row mb-5 d-flex">
+        <div class=" mx-3 d-flex col-5 mt-2 justfiy-content-start">
+            <div class="d-flex col-5 ">
+                <select class="form-select" aria-label="Default select example"> 
+                    <option selected >Useless first</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option> 
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-3 mx-1">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Condition</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+            <div class="col-4 ">
+                <select class="form-select" aria-label="Default select example"> 
+                    <option selected>Delivery options</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option> 
+                </select>
+            </div>
+        </div>
+        <div class="row col-6 mt-2 justfiy-content-end">
+            <div class="d-flex mx-5 justify-content-end  ms-5">
+                <button class="btn btn-outline-primary btn-filter">Show all</button>
+                <button class="btn btn-outline-primary btn-filter btn-filter-active">Auction</button>
+                <button class="btn btn-outline-primary btn-filter ">Buy now</button>
+                <button class="btn btn-outline-primary btn-filter btn-filter-view ms-3">
+                    <i class="fasz fa-list"></i>
+                </button>
+                <button class="btn btn-outline-primary btn-filter btn-filter-view btn-filter-active">
+                    <i class="fas fa-border-all"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="mx-1 d-flex flex-wrap ">
+            <Item v-for="item in items" v-bind:item="item" :key='item.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" /> </div>
+    </div>
+    <Selling @createProduct="createProduct" />
 </template>
 <script>
 import Item from "@/components/items/item.vue";
