@@ -4,10 +4,10 @@
       <div class="content">
         <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
         <div class="search-panel">
-          <SearchPanel/>
+          <SearchPanel :updateTermHandler='updateTermHandler'/>
           <AppFilter/>
         </div>
-        <MovieList :movies="movies" @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
+        <MovieList :movies="onSearchHandler(movies, term.toLocaleLowerCase()) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
         <MovieAddForm @createMovie="createMovie" />
       </div>
     </div>
@@ -68,6 +68,8 @@ export default {
                 id:6
             },
         ],
+        // qidirish uchun kiritilgan ozgaruvchini saqlab turadi
+        term:'',
         }
     },
 
@@ -86,8 +88,16 @@ export default {
       
      },
      onRemoveHandler(id){
-      console.log(id);
-this.movies = this.movies.filter(c=>c.id!=id)
+         this.movies = this.movies.filter(c=>c.id!=id)
+     },
+     onSearchHandler(arr, term){
+      if(term.length==0){
+        return arr
+      }
+      return arr.filter(c=>c.name.toLowerCase().indexOf(term)>-1)
+     },
+     updateTermHandler(term){
+      this.term = term
      }
     }
     
