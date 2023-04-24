@@ -5,9 +5,9 @@
         <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
         <div class="search-panel">
           <SearchPanel :updateTermHandler='updateTermHandler'/>
-          <AppFilter/>
+          <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
         </div>
-        <MovieList :movies="onSearchHandler(movies, term.toLocaleLowerCase()) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
+        <MovieList :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
         <MovieAddForm @createMovie="createMovie" />
       </div>
     </div>
@@ -70,6 +70,7 @@ export default {
         ],
         // qidirish uchun kiritilgan ozgaruvchini saqlab turadi
         term:'',
+        filter:'all',
         }
     },
 
@@ -95,6 +96,21 @@ export default {
         return arr
       }
       return arr.filter(c=>c.name.toLowerCase().indexOf(term)>-1)
+     },
+     
+     onFilterHandler(arr, filter){
+      switch (filter) {
+        case "popular":
+          return arr.filter(c=>c.like);
+        case "mostViewers":
+          return arr.filter(c=>c.viewers>500);
+                
+        default:
+          return arr
+      }
+     },
+     updateFilterHandler(filter){
+      this.filter =filter
      },
      updateTermHandler(term){
       this.term = term
