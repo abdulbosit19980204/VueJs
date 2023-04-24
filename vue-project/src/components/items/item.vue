@@ -5,11 +5,8 @@
       <div class="card-body card-border">
         <p class="card-text">{{ item.itemInfo }}</p>
         <h4 class="card-title fw-bold">
+          <span class=" text-success fs-6 p-1 bg-success bg-opacity-10 border rounded d-none">5%</span>
           ${{ item.itemCost }}
-          <span
-            class="ms-5 text-success fs-6 p-1 bg-success bg-opacity-10 border rounded d-none"
-            >50% OFF</span
-          >
         </h4>
         <p class="fw-lighter">{{ item.itemDesc }}</p>
         <div class="d-flex justify-content-around">
@@ -44,7 +41,7 @@
           <div class="d-flex justify-content-end">
             <a  class="btn btn-outline-dark"
             @click="onLiked"><i class="fas fa-heart" :class="[{liked: item.liked}]"></i></a>
-            <a class="btn btn-outline-dark" @click="onLiked"><i class="fas fa-cart-plus" :class="[{liked: item.liked}]"></i> </a>
+            <a class="btn btn-outline-dark" @click="$emit('onToggle',{id: item.id, prop: 'carted'})"><i class="fas fa-cart-plus" :class="[{carted: item.carted}]"></i> </a>
             <a class="btn btn-outline-dark" @click="$emit('onRemove', item.id)"><i class="far fa-eye-slash"></i> </a>
           </div>
         </div>
@@ -93,6 +90,15 @@ export default {
 }
 .liked{
   color: red;
-  
   }
+  .carted{
+    color: green;
+  }
+  .card-img-top{
+    overflow: hidden;
+  }
+  .card-img-top:hover{
+    transform: scale(-1,1);
+    overflow: hidden;
+   }
 </style>

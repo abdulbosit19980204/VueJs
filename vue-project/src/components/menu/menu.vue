@@ -14,7 +14,11 @@
         <li class="nav-item ">
           <form class="d-flex search-form mx-5 justify-content-center fw-lighter input-group" role="search">
             <i class="fas fa-search input-group-text "></i>
-           <input class="form-control" type="text" placeholder="useless items on white background" aria-label="Search">
+           <input class="form-control" type="text" placeholder="useless items on white background" aria-label="Search"
+            :value="serachKeyWord"
+            @input="changedHandler"
+          
+           >
            <i class="fas fa-xmark input-group-text"></i>
           </form>
         </li>
@@ -44,7 +48,23 @@
 </template>
 <script>
 export default {
-      
+        props:{
+        updateserachKeyWordHandler:{
+          type: Function,
+          reqiered: true,
+        }
+      },
+      data() {
+        return {
+          serachKeyWord:'',
+        }
+      },
+      methods: {
+        changedHandler(e){
+          this.serachKeyWord = e.target.value
+          console.log(e.target.value);
+        }
+      },
 }
 </script>
 <style scoped>

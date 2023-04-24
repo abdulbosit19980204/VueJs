@@ -3,33 +3,33 @@
         <div class=" mx-3 d-flex col-5 mt-2 justfiy-content-start">
             <div class="d-flex col-5 ">
                 <select class="form-select" aria-label="Default select example"> 
-                    <option selected >Useless first</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option> 
-                    <option value="3">Three</option>
+                    <option selected >All</option>
+                    <option value="1">News</option>
+                    <option value="2">Bestseller</option> 
+                    <option value="3">Old Products</option>
                 </select>
             </div>
             <div class="col-3 mx-1">
                 <select class="form-select" aria-label="Default select example">
-                    <option selected>Condition</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected>All</option>
+                    <option value="1">Low</option>
+                    <option value="2">High</option>
+                    <option value="3">Discount</option>
                 </select>
             </div>
             <div class="col-4 ">
                 <select class="form-select" aria-label="Default select example"> 
-                    <option selected>Delivery options</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option> 
+                    <option selected>All</option>
+                    <option value="1">Free</option>
+                    <option value="3">Paid</option> 
+                    <option value="2">From Store</option>
                 </select>
             </div>
         </div>
         <div class="row col-6 mt-2 justfiy-content-end">
             <div class="d-flex mx-5 justify-content-end  ms-5">
-                <button class="btn btn-outline-primary btn-filter">Show all</button>
-                <button class="btn btn-outline-primary btn-filter btn-filter-active">Auction</button>
+                <button class="btn btn-outline-primary btn-filter btn-filter-active">Show all</button>
+                <button class="btn btn-outline-primary btn-filter ">Discount</button>
                 <button class="btn btn-outline-primary btn-filter ">Buy now</button>
                 <button class="btn btn-outline-primary btn-filter btn-filter-view ms-3">
                     <i class="fas fa-list"></i>
@@ -42,7 +42,7 @@
     </div>
     <div class="row ">
         <div class="mx-1 d-flex flex-wrap ">
-            <Item v-for="item in items" v-bind:item="item" :key='item.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" @onRemove="onRemoveHandler" /> </div>
+            <Item v-for="item in onSearchHandler(items, serachKeyWord.toLowerCase())" v-bind:item="item" :key='item.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" @onRemove="onRemoveHandler" @onToggle="onToggleHandler" /> </div>
     </div>
     <Selling @createProduct="createProduct" />
 </template>
@@ -66,6 +66,7 @@ export default {
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: false,
           liked: false,
+          carted: false,
         },
         {
           id: 2,
@@ -76,6 +77,7 @@ export default {
           itemDesc: "1258 bids, 359 watchers $5.95 for shipping",
           star: false,
           liked: false,
+          carted: false,
         },
         {
           id: 3,
@@ -86,6 +88,7 @@ export default {
           itemDesc: "Eligible for nothing :(",
           star: false,
           liked: false,
+          carted: false,
         },
         {
           id: 4,
@@ -96,6 +99,7 @@ export default {
           itemDesc: "Wordwide shitting available Buyers protection possible!",
           star: false,
           liked: false,
+          carted: false,
         },
         {
           id: 5,
@@ -107,6 +111,7 @@ export default {
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: true,
           liked: false,
+          carted: false,
         },
         {
           id: 6,
@@ -118,6 +123,7 @@ export default {
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: true,
           liked: false,
+          carted: false,
         },
         {
           id: 7,
@@ -129,6 +135,7 @@ export default {
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: true,
           liked: false,
+          carted: false,
         },
         {
           id: 8,
@@ -140,6 +147,7 @@ export default {
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: true,
           liked: true,
+          carted: false,
         },
         {
           id: 9,
@@ -151,8 +159,10 @@ export default {
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
           star: true,
           liked: true,
+          carted: false,
         },
       ],
+      serachKeyWord:'',
     };
   },
   methods: {
@@ -186,8 +196,21 @@ export default {
       });
       
     },
+    onToggleHandler({id, prop}){
+      this.items = this.items.map(item=>{
+        if (item.id==id) {
+         return {...item, [prop]: !item[prop]}
+        }return item
+      })
+    },
     onRemoveHandler(id){
       this.items = this.items.filter(c=>c.id!=id)
+    },
+    onSearchHandler(arr, serachKeyWord){
+      if(serachKeyWord.length==0){return arr}return arr.filter(c=>c.itemInfo.toLowerCase().indexOf(serachKeyWord)>-1)
+    },
+    updateserachKeyWordHandler(serachKeyWord){
+      this.serachKeyWord = serachKeyWord
     }
     
   },

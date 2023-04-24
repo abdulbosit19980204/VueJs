@@ -24,6 +24,7 @@ export default {
     FilterLeft,
     Items,
   },
+
 };
 </script>
 <style></style>
