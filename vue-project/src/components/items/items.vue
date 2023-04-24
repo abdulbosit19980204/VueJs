@@ -32,7 +32,7 @@
                 <button class="btn btn-outline-primary btn-filter btn-filter-active">Auction</button>
                 <button class="btn btn-outline-primary btn-filter ">Buy now</button>
                 <button class="btn btn-outline-primary btn-filter btn-filter-view ms-3">
-                    <i class="fasz fa-list"></i>
+                    <i class="fas fa-list"></i>
                 </button>
                 <button class="btn btn-outline-primary btn-filter btn-filter-view btn-filter-active">
                     <i class="fas fa-border-all"></i>
@@ -42,7 +42,7 @@
     </div>
     <div class="row ">
         <div class="mx-1 d-flex flex-wrap ">
-            <Item v-for="item in items" v-bind:item="item" :key='item.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" /> </div>
+            <Item v-for="item in items" v-bind:item="item" :key='item.id' @onLike="onLikeHandler" @onLiked="onLikedHandler" @onRemove="onRemoveHandler" /> </div>
     </div>
     <Selling @createProduct="createProduct" />
 </template>
@@ -105,7 +105,7 @@ export default {
             "Creativity stimulating lotion. Drink every morning to generate better ideas!",
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
-          star: false,
+          star: true,
           liked: false,
         },
         {
@@ -116,7 +116,7 @@ export default {
             "Creativity stimulating lotion. Drink every morning to generate better ideas!",
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
-          star: false,
+          star: true,
           liked: false,
         },
         {
@@ -127,7 +127,7 @@ export default {
             "Creativity stimulating lotion. Drink every morning to generate better ideas!",
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
-          star: false,
+          star: true,
           liked: false,
         },
         {
@@ -138,8 +138,8 @@ export default {
             "Creativity stimulating lotion. Drink every morning to generate better ideas!",
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
-          star: false,
-          liked: false,
+          star: true,
+          liked: true,
         },
         {
           id: 9,
@@ -149,8 +149,8 @@ export default {
             "Creativity stimulating lotion. Drink every morning to generate better ideas!",
           itemCost: 49.5,
           itemDesc: "Eligible for Shipping To Mars or somewhere else",
-          star: false,
-          liked: false,
+          star: true,
+          liked: true,
         },
       ],
     };
@@ -184,7 +184,9 @@ export default {
       });
       
     },
-  
+    onRemoveHandler(id){
+      this.items = this.items.filter(c=>c.id!=id)
+    }
     
   },
 };

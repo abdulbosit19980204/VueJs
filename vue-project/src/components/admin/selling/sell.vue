@@ -3,6 +3,16 @@
     <form class="form mt-2" @submit.prevent>
       <div class="row">
         <div class="col-6">
+         
+         <label for="name" class="form-lable">Name  & Short Information</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            :value="itemInfo"
+            @input="itemInfo = $event.target.value"
+          />
+
           <label for="img" class="form-label">Image</label>
           <input
             type="text"
@@ -11,20 +21,9 @@
             :value="itemImgSrc"
             @input="itemImgSrc = $event.target.value"
           />
-        </div>
-        <div class="col-6">
-          <label for="name" class="form-lable">Name Information</label>
-          <input
-            type="text"
-            class="form-control"
-            id="name"
-            :value="itemInfo"
-            @input="itemInfo = $event.target.value"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2">
+
+          <div class="row">
+          <div class="col-3">
           <label for="cost" class="form-lable">Cost</label>
           <input
             type="number"
@@ -33,8 +32,20 @@
             :value="itemCost"
             @input="itemCost = $event.target.value"
           />
+          </div>
+
+          <div class="col-6 mt-4">
+        <button type="submit" class="btn btn-outline-success" @click="addProduct">
+          Add
+        </button>
+        <button type="submit" class="btn btn-outline-warning mx-3">Cancel</button>
+      </div>
+          </div>
+
+
         </div>
-        <div class="form-floating mt-3 col-8">
+        <div class="col-6">
+          <div class="form-floating mt-3">
           <textarea
             class="form-control"
             placeholder="Description here"
@@ -44,13 +55,10 @@
           ></textarea>
           <label for="desc">Comments</label>
         </div>
+        </div>
       </div>
-      <div class="mt-2">
-        <button type="submit" class="btn btn-outline-success" @click="addProduct">
-          Add
-        </button>
-        <button type="submit" class="btn btn-outline-warning mx-3">Cancel</button>
-      </div>
+      
+      
     </form>
     <br /><br />
   </div>
@@ -86,6 +94,6 @@ export default {
 </script>
 <style>
 #desc {
-  height: 100px;
+  height: 180px;
 }
 </style>

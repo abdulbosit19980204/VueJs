@@ -39,12 +39,13 @@
               class="far fa-star star-ico"
               :class="[{ star: item.star }]"
             ></i>
-            <h5 class="mx-2 fs-5">4.05</h5>
+            <!-- <h5 class="mx-2 fs-5">4.05</h5> -->
           </div>
           <div class="d-flex justify-content-end">
-            <a  class="btn btn-outline-primary"
-            @click="onLiked"><i class="far fa-heart" :class="[{liked: item.liked}]"></i> Watch</a
-            >
+            <a  class="btn btn-outline-dark"
+            @click="onLiked"><i class="fas fa-heart" :class="[{liked: item.liked}]"></i></a>
+            <a class="btn btn-outline-dark" @click="onLiked"><i class="fas fa-cart-plus" :class="[{liked: item.liked}]"></i> </a>
+            <a class="btn btn-outline-dark" @click="$emit('onRemove', item.id)"><i class="far fa-eye-slash"></i> </a>
           </div>
         </div>
       </div>
@@ -92,5 +93,6 @@ export default {
 }
 .liked{
   color: red;
+  
   }
 </style>

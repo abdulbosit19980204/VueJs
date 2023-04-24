@@ -25,8 +25,11 @@
         
     </ul>
     <div class="d-flex justify-content-end">
-        <button class="btn btn-outline-primary mx-2" type="submit">Sign In</button>
+        <button class="btn btn-outline-primary mx-2" type="submit">Log out
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        </button>
         <button class="btn btn-light mx-3 cart-btn position-relative" type="submit" >My cart 
+          <i class="fas fa-cart-shopping"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" >5 </span>
         </button>
         
