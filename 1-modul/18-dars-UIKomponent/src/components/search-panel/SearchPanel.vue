@@ -1,4 +1,4 @@
-<template lang="">
+<template >
     <div class="container">
        <input type="text" class="form-control search-input" placeholder="Kinolarni qidirish" 
        @input="changeHandler" 

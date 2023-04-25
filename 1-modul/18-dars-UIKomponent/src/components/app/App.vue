@@ -3,10 +3,10 @@
     <div class="app font-monospace">
       <div class="content">
         <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
-        <div class="search-panel">
+        <Box class="search-panel">
           <SearchPanel :updateTermHandler='updateTermHandler'/>
           <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
-        </div>
+        </Box>
         <MovieList :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
         <MovieAddForm @createMovie="createMovie" />
       </div>
@@ -19,9 +19,10 @@ import SearchPanel from "@/components/search-panel/SearchPanel.vue"
 import AppFilter from "@/components/app-filter/appFilter.vue"
 import MovieList from "@/components/movie-list/movieList.vue"
 import MovieAddForm from "@/components/movie-add-form/movieAddForm.vue"
+import Box from "../../uicompanents/Box.vue"
 
 export default {
-  components:{AppInfo,SearchPanel,AppFilter,MovieList,MovieAddForm},
+  components:{ AppInfo, SearchPanel, AppFilter, MovieList, MovieAddForm, Box },
     data(){
         return {
             movies:[
@@ -133,9 +134,6 @@ export default {
   }
   .search-panel{
     margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: #fcfcf5;
-    border-radius: 4px;
-    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+   
   }
 </style>

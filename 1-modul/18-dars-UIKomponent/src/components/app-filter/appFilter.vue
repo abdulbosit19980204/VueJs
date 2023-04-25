@@ -1,16 +1,18 @@
 <template lang="">
 <div class="btn-group mt-3">
-    <button v-for="btn in filterButtons " 
+
+    <PrimaryButton v-for="btn in filterButtons " 
     :key="btn.name" class="btn" 
     :class="[filterName==btn.name ? 'btn-dark' :'btn-outline-dark' ]"
     @click="filterHandler(btn.name)" >
     {{btn.title}}
-    </button>
-   
-</div>
+    </PrimaryButton>
+   </div>
 </template>
 <script>
+
 export default {
+    
     data() {
         return {
             filter:'all',
