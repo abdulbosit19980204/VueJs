@@ -7,6 +7,7 @@ export default {
     name: "Input",
     props:{
         modelValue:[String, Number],
+        
     },
     methods:{
         updateInput(e) {
