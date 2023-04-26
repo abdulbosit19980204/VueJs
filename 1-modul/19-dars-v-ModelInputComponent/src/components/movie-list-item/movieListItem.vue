@@ -1,7 +1,7 @@
 <template >
   <li  class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favourite: movie.favourite}]">  <!--Bu yerda if shart ishlayapti :class bilan-->
     <span @click="$emit('onToggle', {id: movie.id, prop: 'like'})" class="list-group-item-lable">{{ movie.name }}</span>
-    <input type="number" class="list-group-item-input"  :value="movie.viewers">
+    <input type="number" class="list-group-item-input"  :value="movie.viewers" disabled>
    
     <div class="d-flex justify-content-center align-items-center">
         <button @click="$emit('onToggle', {id: movie.id, prop: 'favourite'})" type="button" class="btn-cookie btn-sm" >

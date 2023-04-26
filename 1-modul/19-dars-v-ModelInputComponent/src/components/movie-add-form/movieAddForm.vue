@@ -2,8 +2,9 @@
     <Box>
         <h3>Yangi kino qoshish</h3>
         <form action="" class="add-form d-flex" @submit.prevent>
-            <input type = "text"   name = "" id="" class="form-control new-movie-label"      placeholder="Qanday kino"             :value="name"    @input="name=$event.target.value" >
-            <input type = "number" name = "" id="" class="form-control new-movie-label mx-2" placeholder="Nechi marotaba korilgan" :value="viewers" @input="viewers=$event.target.value">
+        <Input v-model="name" class="new-movie-label"      placeholder="Qanday kino"                              ></Input>
+        <Input v-model="viewers" class="new-movie-label mx-2" placeholder="Nechi marotaba korilgan"  type="number"  ></Input>
+            
             <div class="input-group">
                 <div class="input-group-text">
                     <input type="checkbox" name="" id="" class="form-check-input new-movie-lable">
