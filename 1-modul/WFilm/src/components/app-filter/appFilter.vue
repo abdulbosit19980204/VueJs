@@ -3,7 +3,7 @@
 
     <PrimaryButton v-for="btn in filterButtons " 
     :key="btn.name" class="btn" 
-    :class="[filterName==btn.name ? 'btn-dark' :'btn-outline-dark' ]"
+    :class="[filterName==btn.name ? 'btn-light' :'btn-outline-light' ]"
     @click="filterHandler(btn.name)" >
     {{btn.title}}
     </PrimaryButton>
@@ -18,15 +18,15 @@ export default {
             filter:'all',
             filterButtons:[
                 {
-                title:"Barcha kinolar",
+                title:"All",
                 name:"all"
                 },
                 {
-                title:"Mashxur kinolar",
+                title:"Favorite",
                 name:"popular"
                 },
                 {
-                title:"Eng kop korilgan kinolar",
+                title:"Most Watched",
                 name:"mostViewers"
                 },
         ]

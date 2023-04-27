@@ -1,14 +1,30 @@
 <template >
+
+  
   <div class="container mt-3">
     <div class="app font-monospace">
       <div class="content">
-        <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
-        <Box class="search-panel">
-          <SearchPanel :updateTermHandler='updateTermHandler'/>
-          <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
+       
+      
+     
+      <h1>Movies I've seen</h1>
+      <p>List of movies and TV Shows, I, <strong>Abdulbosit Tuychiev </strong> have watched till date. <br> Explore what I have watched and also feel free to make a suggestion. 😉</p>
+        <div class="col-5">
+          <SearchPanel :updateTermHandler='updateTermHandler' class=""/>
+        <Box class="search-panel ">
+          <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" class="mb-2"/>
+          <br>
+          <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
         </Box>
+          </div>
+
         <MovieList :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
+       <hr>
+        <div class="col-5">
         <MovieAddForm @createMovie="createMovie" />
+      </div>
+       
+     
       </div>
     </div>
   </div>
@@ -28,45 +44,113 @@ export default {
             movies:[
                 {
                 name: "Umar",
-                viewers:505,
+                viewers:"16M",
                 favourite: true,
                 like: true,
-                id:1
+                id:1,
+                videoLink:"https://www.youtube.com/watch?v=poiBVJOvNzo&list=PLzRCNDwAZZuvagWlKwht8-_OVyRKY6q8i",
+                desc:"Omar (Arabic: عُمَرْ) or Omar Farouk (Persian: عمر فاروق) is a historical Arab television drama miniseries-serial that was produced and broadcast by MBC1 and directed by the Syrian director Hatem Ali.",
+                imgSrc: "https://pic-bstarstatic.akamaized.net/ugc/6c9144cf6031e609d742624e83efa84f.jpg@1200w_630h_1e_1c_1f.webp",
             },
             {
-                name: "Usmon New Film",
-                viewers:525,
+                name: "Usmon",
+                viewers:"71K",
                 favourite: false,
                 like: true,
-                id:2
+                id:2,
+                videoLink:"https://www.youtube.com/watch?v=-M_bnaWlcAk",
+                desc:"Osman is a Turkish historical drama television series created by Mehmet Bozdağ and starring Burak Özçivit as the main protagonist.It focuses on the life of Osman I, the founder of the Ottoman Empire.",
+                imgSrc: "https://storage.kun.uz/source/thumbnails/_medium/6/UCdt5Qzk3aATyLl6OgDEBSDQZukbs63C_medium.jpg",
             },
             {
-                name: "Kino1",
-                viewers:75,
+                name: "James Bond",
+                viewers:"2.3M",
                 favourite: true,
                 like: true,
-                id:3
+                id:3,
+                videoLink:"https://www.youtube.com/watch?v=bSwT1Smh5z4",
+                desc:"The James Bond series focuses on James Bond, a fictional British Secret Service agent created in 1953 by writer Ian Fleming, who featured him in twelve novels and two short-story collections. ",
+                imgSrc: "https://cdn.xabardor.uz/media/photo/2022/06/27/news_photo-20220630-093413.webp",
             },
             {
-                name: "Film1",
-                viewers:55,
+                name: "Avatar",
+                viewers:"5.6M",
                 favourite: true,
                 like: false,
                 id:4,
+                videoLink:"https://www.youtube.com/watch?v=ON0Cp_2jZO0",
+                desc:"Avatar is an American media franchise created by James Cameron, which consists of a planned series of epic science fiction films produced by Lightstorm Entertainment.",
+                imgSrc: "https://lumiere-a.akamaihd.net/v1/images/cg_pandorapedia_cove_of_the_ancestors_73428d4e.jpeg?region=0,0,627,345",
             },
             {
-                name: "Film2",
-                viewers:155,
-                favourite: false,
-                like: false,
+                name: "Olamga nur sochgan oy",
+                viewers:"883K",
+                favourite: true,
+                like: true,
                 id:5,
+                videoLink:"https://www.youtube.com/watch?v=y5pY5c4kvmQ",
+                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
+                imgSrc: "https://i.mycdn.me/videoPreview?id=1329888168467&type=32&idx=0&tkn=DvT9Ijb6HzLF-t8sxKiHLc8B9z8&fn=external_8",
             },
             {
-                name: "Film3",
-                viewers:775,
+                name: "Achiq Qismat",
+                viewers:"4M",
                 favourite: true,
                 like: false,
-                id:6
+                id:6,
+                videoLink:"https://www.youtube.com/watch?v=_qyJr4QSqWo",
+                desc:"Yili:2021 Mamlakat:O'zbekiston Yosh:12+ Janr: Uzbek kino / Drama / Melodrama Sifat:HD Ovoz:O'zbek tilida Davomiyligi:1 soat 44 minut",
+                imgSrc: "https://i.ytimg.com/vi/_qyJr4QSqWo/maxresdefault.jpg",
+            },
+            {
+                name: "O'g'ri",
+                viewers:"10M",
+                favourite: false,
+                like: true,
+                id:7,
+                videoLink:"https://www.youtube.com/watch?v=3tW3prt_2_Y",
+                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
+                imgSrc: "https://i.ytimg.com/vi/3tW3prt_2_Y/maxresdefault.jpg",
+            },
+            {
+                name: "Siyosatchi",
+                viewers:"161K",
+                favourite: true,
+                like: true,
+                id:8,
+                videoLink:"https://www.youtube.com/watch?v=B-C5iIq-Ems",
+                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
+                imgSrc: "https://i.ytimg.com/vi/B-C5iIq-Ems/hqdefault.jpg",
+            },
+            {
+                name: "Londonlik kelin",
+                viewers:"3M",
+                favourite: true,
+                like: false,
+                id:9,
+                videoLink:"https://www.youtube.com/watch?v=e5XLVTpxeCU",
+                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
+                imgSrc: "https://i.ytimg.com/vi/e5XLVTpxeCU/maxresdefault.jpg",
+            },
+            {
+                name: "Josus",
+                viewers:"3.7M",
+                favourite: false,
+                like: false,
+                id:10,
+                videoLink:"https://www.youtube.com/watch?v=5OA2Ta1_bhQ",
+                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
+                imgSrc: "https://i.ytimg.com/vi/OyecZzpkFMA/hqdefault.jpg",
+            },
+            {
+                name: "Changalzor Farzandi ",
+                viewers:62,
+                favourite: true,
+                like: false,
+                id:11,
+                videoLink:"https://www.youtube.com/watch?v=MqzYpB65AGw",
+                desc:"Jungli Bolasi Hind kino Uzbek tilida 2017 O'zbekcha tarjima kino HD",
+                imgSrc: "https://asilmedia.net/uploads/posts/2021-02/1613849925_maxresdefault.jpg",
             },
         ],
         // qidirish uchun kiritilgan ozgaruvchini saqlab turadi
@@ -99,17 +183,70 @@ export default {
       return arr.filter(c=>c.name.toLowerCase().indexOf(term)>-1)
      },
      
-     onFilterHandler(arr, filter){
-      switch (filter) {
-        case "popular":
-          return arr.filter(c=>c.like);
-        case "mostViewers":
-          return arr.filter(c=>c.viewers>500);
+     deleteNotDigits(str) {
+                // return parseInt(str.replace(/[^\d.]/g, ''))
+                return +(str.replace(/[^\d.]/g, ''))
+            },
+            
+    //  onFilterHandler(arr, filter){
+    //   switch (filter) {
+    //     case "popular":
+    //       return arr.filter(c=>c.like);
+    //       case "mostViewers":
+    //       return arr.filter(c => c.viewers>500);
                 
-        default:
-          return arr
-      }
-     },
+    //     default:
+    //       return arr
+    //   }
+    //  },
+    onFilterHandler(arr, filter) {
+  switch (filter) {
+    case "popular":
+      return arr.filter(c => c.like);
+    case "mostViewers":
+      let total = 0;
+      let count = 0;
+      arr.forEach(c => {
+        let numericValue = 0;
+        let viewers = c.viewers;
+        if (typeof viewers === "string") {
+          viewers = viewers.replace(/,/g, "");
+          if (viewers.includes("K")) {
+            numericValue = parseFloat(viewers) * 1000;
+          } else if (viewers.includes("M")) {
+            numericValue = parseFloat(viewers) * 1000000;
+          } else {
+            numericValue = parseFloat(viewers);
+          }
+        } else {
+          numericValue = viewers;
+        }
+        total += numericValue;
+        count++;
+      });
+      const average = total / count;
+      return arr.filter(c => {
+        let numericValue = 0;
+        let viewers = c.viewers;
+        if (typeof viewers === "string") {
+          viewers = viewers.replace(/,/g, "");
+          if (viewers.includes("K")) {
+            numericValue = parseFloat(viewers) * 1000;
+          } else if (viewers.includes("M")) {
+            numericValue = parseFloat(viewers) * 1000000;
+          } else {
+            numericValue = parseFloat(viewers);
+          }
+        } else {
+          numericValue = viewers;
+        }
+        return numericValue > average;
+      });
+    default:
+      return arr;
+  }
+},
+
      updateFilterHandler(filter){
       this.filter =filter
      },
@@ -121,19 +258,21 @@ export default {
 }
 </script>
 <style>
+body{
+  background: #121829;
+ 
+}
   .app{
     height: 100vh;
     color: black;
   }
   .content{
-    width: 1000px;
+    width: 1300px;
     min-height: 700px;
-    background-color: white;
+    /* background-color: white; */
     margin: 0 auto;
     padding: 5rem 0;
+    color: aliceblue;
   }
-  .search-panel{
-    margin-top: 2rem;
-   
-  }
+  
 </style>

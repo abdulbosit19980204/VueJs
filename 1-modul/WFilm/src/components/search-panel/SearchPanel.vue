@@ -1,6 +1,6 @@
 <template >
     <div class="container">
-       <Input class="search-input" placeholder="Kinolarni qidirish"  v-model="term" @input="changeHandler"/>
+       <Input class="search-input" placeholder="Searching ..."  v-model="term" @input="changeHandler"/>
     </div>
 </template>
 <script>
@@ -29,8 +29,14 @@ export default {
     .search-input{
     padding: 1.5rem;
     border-radius: 4px;
-    background-color: #fcfcf5;
-    border-radius: 4px;
+    color: aliceblue;
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid #323B54;
+    border-radius: 12px;
     box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
     }
+    ::placeholder {
+        color: rgb(252, 252, 252);
+        opacity: 0.3; /* Firefox */
+        }
 </style>

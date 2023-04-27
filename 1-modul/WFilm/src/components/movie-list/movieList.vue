@@ -1,9 +1,9 @@
 <template>
-    <ul class="movie-list list-group" >
-        <h3>Movie List</h3>
+    <!-- <h3 class="mt-3 titleMovies">Movie List</h3> -->
+    <div class="movie-list d-flex flex-wrap justify-content-center" >
         <MovieListItem v-for="movie in movies" v-bind:movie="movie" :key="movie.id" @onToggle="$emit('onToggle', $event)" @onRemove="$emit('onRemove', $event)"/>
            
-    </ul>
+    </div>
 </template>
 <script>
 
@@ -26,8 +26,13 @@ export default {
     margin-top: 25px;
     padding: 1.5rem;
     border-radius: 4px;
-    background-color: #fcfcf5;
+    /* background-color: #fcfcf5; */
     border-radius: 4px;
-    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+    
+    color: azure;
+    /* box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15); */
+    }
+    .titleMovies{
+        color: azure;
     }
 </style>
