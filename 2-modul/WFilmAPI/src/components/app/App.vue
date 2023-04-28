@@ -166,7 +166,7 @@ export default {
             const newMovieList = response.data.Search.map(item=>({
                 id: item.imdbID,
                 name: item.Title,
-                viewers: Math.floor(Math.random() * Date.now())/100,
+                viewers: Math.floor(Math.random() * Date.now()/10000000),
                 favourite: false,
                 like: true,
                 videoLink:`https://www.youtube.com/results?search_query=${item.Title}`,
