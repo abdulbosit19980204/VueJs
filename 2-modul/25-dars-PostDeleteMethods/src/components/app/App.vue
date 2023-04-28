@@ -2,7 +2,7 @@
   <div class="container mt-3">
     <div class="app font-monospace">
       <div class="content">
-          <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
+          <AppInfo :allMoviesCount="moviesCount" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
           <Box class="search-panel">
             <SearchPanel :updateTermHandler='updateTermHandler'/>
             <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
@@ -51,12 +51,19 @@ export default {
         limit: 10,
         page:1,
         totalPages: 0,
+        moviesCount:0,
         }
     },
 
     methods:{
-      createMovie(item){  
-      this.movies.push(item)
+      async createMovie(item){  
+        try {
+        const response = await axios.post("https://jsonplaceholder.typicode.com/posts", item )
+        this.movies.push(item)
+        console.log(response);
+        } catch (error) {
+        console.log(error.message);          
+        }
      },
      onToggleHandler({id, prop}){
        
@@ -68,8 +75,14 @@ export default {
       
       
      },
-     onRemoveHandler(id){
-         this.movies = this.movies.filter(c=>c.id!=id)
+     async onRemoveHandler(id){
+      try {
+        const response = await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        console.log(response);
+      } catch (error) {
+        console.log(error.message);
+      }   
+      this.movies = this.movies.filter(c=>c.id!=id)
      },
      onSearchHandler(arr, term){
       if(term.length==0){
@@ -97,6 +110,9 @@ export default {
      },
      async fetchMovie(){
       try {
+        //http://www.omdbapi.com/?s=star wars&apikey=263d22d8 --- free movies api 
+        // https://www.omdbapi.com/?s=man&apikey=4a3b711b
+        
         this.isLoading=true
         const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
           params:{
@@ -111,6 +127,7 @@ export default {
           favourite: false,
           viewers: (item.id)*100
         }))
+        this.moviesCount = response.headers['x-total-count']
         this.totalPages = Math.ceil(response.headers['x-total-count']/this.limit)
         console.log(this.totalPages);
        this.movies = newMovieList
@@ -154,3 +171,4 @@ export default {
    
   }
 </style>
+
