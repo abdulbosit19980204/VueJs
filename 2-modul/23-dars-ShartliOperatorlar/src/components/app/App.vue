@@ -8,7 +8,10 @@
           <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
         </Box>
           <PrimaryButton @click="fetchMovie()" class="btn-outline-success mt-3"><i class="fas fa-rotate"></i> Refresh</PrimaryButton>
-        <MovieList :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
+          <Box v-if="!movies.length && !isLoading"> <p class="fs-1 text-center text-danger">Kinolar yo'q </p></Box>
+          <Box v-else-if="isLoading"> <span class="fs-3 ms-5 p-5">Loading </span><Loader/> </Box>
+
+        <MovieList v-else :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
         <MovieAddForm @createMovie="createMovie" />
       </div>
     </div>
@@ -22,9 +25,11 @@ import MovieList from "@/components/movie-list/movieList.vue"
 import MovieAddForm from "@/components/movie-add-form/movieAddForm.vue"
 import Box from "../../uicompanents/Box.vue"
 import axios from "axios"
+import Loader from "../../uicompanents/Loader.vue"
+
 
 export default {
-  components:{ AppInfo, SearchPanel, AppFilter, MovieList, MovieAddForm, Box },
+  components:{ AppInfo, SearchPanel, AppFilter, MovieList, MovieAddForm, Box, Loader },
     data(){
         return {
             movies:[
@@ -33,6 +38,7 @@ export default {
         // qidirish uchun kiritilgan ozgaruvchini saqlab turadi
         term:'',
         filter:'all',
+        isLoading: false,
         }
     },
 
@@ -80,7 +86,8 @@ export default {
  
     async fetchMovie(){
       try {
-        const {data} = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=50")
+        this.isLoading=true
+        const {data} = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=10")
         const newMovieList = data.map(item=>({
           id: item.id,
           name: item.title,
@@ -89,9 +96,11 @@ export default {
           viewers: (item.id)*100
         }))
        this.movies = newMovieList
-        
-      } catch (error) {
+       } catch (error) {
         console.log(error.name);
+        
+      }finally{
+        this.isLoading=false
       }
     }
 
