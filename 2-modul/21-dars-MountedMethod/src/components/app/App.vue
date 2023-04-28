@@ -117,10 +117,10 @@ export default {
       this.term = term
      },
      mountedLog(){
-      console.log("Mounted");
+      console.log("Mounted ran");
      },
      updatedLog(){
-      console.log("updated");
+      console.log("updated ran");
      },
     
 
