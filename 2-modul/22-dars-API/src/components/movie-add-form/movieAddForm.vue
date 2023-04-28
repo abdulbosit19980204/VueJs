@@ -37,10 +37,7 @@
             this.name=''
             this.viewers=''
         }
-    },
-    unmounted() {
-        console.log("unmounted");
-    },
+    }
    
 }
 </script>
