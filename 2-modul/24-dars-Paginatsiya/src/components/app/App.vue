@@ -2,17 +2,25 @@
   <div class="container mt-3">
     <div class="app font-monospace">
       <div class="content">
-        <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
-        <Box class="search-panel">
-          <SearchPanel :updateTermHandler='updateTermHandler'/>
-          <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
-        </Box>
+          <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
+          <Box class="search-panel">
+            <SearchPanel :updateTermHandler='updateTermHandler'/>
+            <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" />
+          </Box>
           <PrimaryButton @click="fetchMovie()" class="btn-outline-success mt-3"><i class="fas fa-rotate"></i> Refresh</PrimaryButton>
           <Box v-if="!movies.length && !isLoading"> <p class="fs-1 text-center text-danger">Kinolar yo'q </p></Box>
           <Box v-else-if="isLoading"> <span class="fs-3 ms-5 p-5">Loading </span><Loader/> </Box>
-
-        <MovieList v-else :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
-        <MovieAddForm @createMovie="createMovie" />
+          <MovieList v-else :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
+          <Box class="d-flex justify-content-center">
+            <nav aria-label="pagination">
+              <ul class="pagination pagination">
+                <li v-for="pageNumber in totalPages" :key="pageNumber" :class="{'active': pageNumber==page}" @click="changePageHandler(pageNumber)">
+                      <span class="page-link">{{ pageNumber }}</span>
+                </li>
+              </ul>
+            </nav>
+          </Box>
+          <MovieAddForm @createMovie="createMovie" />
       </div>
     </div>
   </div>
@@ -28,8 +36,9 @@ import axios from "axios"
 import Loader from "../../uicompanents/Loader.vue"
 
 
+
 export default {
-  components:{ AppInfo, SearchPanel, AppFilter, MovieList, MovieAddForm, Box, Loader },
+  components:{ AppInfo, SearchPanel, AppFilter, MovieList, MovieAddForm, Box, Loader, Box },
     data(){
         return {
             movies:[
@@ -39,6 +48,9 @@ export default {
         term:'',
         filter:'all',
         isLoading: false,
+        limit: 10,
+        page:1,
+        totalPages: 0,
         }
     },
 
@@ -83,18 +95,24 @@ export default {
      updateTermHandler(term){
       this.term = term
      },
- 
-    async fetchMovie(){
+     async fetchMovie(){
       try {
         this.isLoading=true
-        const {data} = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=10")
-        const newMovieList = data.map(item=>({
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts', {
+          params:{
+            _limit: this.limit,
+            _page: this.page,
+          },
+        })
+        const newMovieList = response.data.map(item=>({
           id: item.id,
           name: item.title,
           like: false,
           favourite: false,
           viewers: (item.id)*100
         }))
+        this.totalPages = Math.ceil(response.headers['x-total-count']/this.limit)
+        console.log(this.totalPages);
        this.movies = newMovieList
        } catch (error) {
         console.log(error.name);
@@ -102,16 +120,21 @@ export default {
       }finally{
         this.isLoading=false
       }
-    }
-
+     },
+     changePageHandler(page){
+      this.page = page
+      // this.fetchMovie()
+     },
     },
     mounted() {
      this.fetchMovie()
 
      },
-     updated() {
-     
-     },
+     watch:{
+      page(){
+        this.fetchMovie()
+      }
+     }
 }
 </script>
 <style>
