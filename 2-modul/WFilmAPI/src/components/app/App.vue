@@ -1,25 +1,52 @@
+<!-- 
+//http://www.omdbapi.com/?s=star wars&apikey=263d22d8 --- free movies api 
+// https://www.omdbapi.com/?s=man&apikey=4a3b711b
+ -->
 <template >
-
   
   <div class="container mt-3">
     <div class="app font-monospace">
       <div class="content">
        
-      
-     
-      <h1>Movies I've seen</h1>
+      <div class=" mt-5 ">
+       <div class="row">
+       <div class="col-6">
+        <h1>Movies I've seen</h1>
       <p>List of movies and TV Shows, I, <strong>Abdulbosit Tuychiev </strong> have watched till date. <br> Explore what I have watched and also feel free to make a suggestion. 😉</p>
-        <div class="col-5">
-          <SearchPanel :updateTermHandler='updateTermHandler' class=""/>
+      
+        <PrimaryButton @click="fetchMovie()" class="btn-outline-success"><i class="fas fa-rotate"></i> Refresh</PrimaryButton>
+       </div>
+      <div class="col-6" >
+          <SearchPanel :updateTermHandler='updateTermHandler'/>
         <Box class="search-panel ">
           <AppFilter :updateFilterHandler="updateFilterHandler" :filterName="filter" class="mb-2"/>
           <br>
-          <AppInfo :allMoviesCount="movies.length" :favouriteMoviesCount="movies.filter(c=>c.favourite).length"/>
+          <AppInfo :allMoviesCount="moviesCount" :favouriteMoviesCount="movies.filter(c=>c.favourite).length" />
         </Box>
-          </div>
+               
+      </div>
+
+       </div>
+      </div>
+     
+         <Box v-if="!movies.length && !isLoading"> <p class="fs-1 text-center text-danger">Kinolar yo'q </p></Box>
+          <Box v-else-if="isLoading"> <span class="fs-3 ms-5 p-5">Loading </span><Loader/> </Box>
 
         <MovieList :movies="onFilterHandler(onSearchHandler(movies, term.toLocaleLowerCase()),filter) " @onToggle="onToggleHandler" @onRemove="onRemoveHandler" />
        <hr>
+      <div  class="d-flex -justfiy-content-center">
+        
+       <Box class="ms-5">
+          <nav aria-label="pagination" class="d-flex -justfiy-content-center">
+              <ul class="pagination pagination">
+               <li  class="btn btn-outline-success" v-for="pageNumber in Math.ceil(moviesCount/100)" :key="pageNumber" :class="{'active': pageNumber==page}" @click="changePageHandler(pageNumber)">
+                      <span class="page-link">{{ pageNumber }}</span>
+                </li> 
+              </ul>
+            </nav>
+        </Box>
+      </div>
+        <hr>
         <div class="col-5">
         <MovieAddForm @createMovie="createMovie" />
       </div>
@@ -36,169 +63,49 @@ import AppFilter from "@/components/app-filter/appFilter.vue"
 import MovieList from "@/components/movie-list/movieList.vue"
 import MovieAddForm from "@/components/movie-add-form/movieAddForm.vue"
 import Box from "../../uicompanents/Box.vue"
+import axios from "axios"
+import Loader from "../../uicompanents/Loader.vue"
 
 export default {
   components:{ AppInfo, SearchPanel, AppFilter, MovieList, MovieAddForm, Box },
     data(){
         return {
-            movies:[
-                {
-                name: "Umar",
-                viewers:"16M",
-                favourite: true,
-                like: true,
-                id:1,
-                videoLink:"https://www.youtube.com/watch?v=poiBVJOvNzo&list=PLzRCNDwAZZuvagWlKwht8-_OVyRKY6q8i",
-                desc:"Omar (Arabic: عُمَرْ) or Omar Farouk (Persian: عمر فاروق) is a historical Arab television drama miniseries-serial that was produced and broadcast by MBC1 and directed by the Syrian director Hatem Ali.",
-                imgSrc: "https://pic-bstarstatic.akamaized.net/ugc/6c9144cf6031e609d742624e83efa84f.jpg@1200w_630h_1e_1c_1f.webp",
-            },
-            {
-                name: "Usmon",
-                viewers:"71K",
-                favourite: false,
-                like: true,
-                id:2,
-                videoLink:"https://www.youtube.com/watch?v=-M_bnaWlcAk",
-                desc:"Osman is a Turkish historical drama television series created by Mehmet Bozdağ and starring Burak Özçivit as the main protagonist.It focuses on the life of Osman I, the founder of the Ottoman Empire.",
-                imgSrc: "https://storage.kun.uz/source/thumbnails/_medium/6/UCdt5Qzk3aATyLl6OgDEBSDQZukbs63C_medium.jpg",
-            },
-            {
-                name: "James Bond",
-                viewers:"2.3M",
-                favourite: true,
-                like: true,
-                id:3,
-                videoLink:"https://www.youtube.com/watch?v=bSwT1Smh5z4",
-                desc:"The James Bond series focuses on James Bond, a fictional British Secret Service agent created in 1953 by writer Ian Fleming, who featured him in twelve novels and two short-story collections. ",
-                imgSrc: "https://cdn.xabardor.uz/media/photo/2022/06/27/news_photo-20220630-093413.webp",
-            },
-            {
-                name: "Avatar",
-                viewers:"5.6M",
-                favourite: true,
-                like: false,
-                id:4,
-                videoLink:"https://www.youtube.com/watch?v=ON0Cp_2jZO0",
-                desc:"Avatar is an American media franchise created by James Cameron, which consists of a planned series of epic science fiction films produced by Lightstorm Entertainment.",
-                imgSrc: "https://lumiere-a.akamaihd.net/v1/images/cg_pandorapedia_cove_of_the_ancestors_73428d4e.jpeg?region=0,0,627,345",
-            },
-            {
-                name: "Olamga nur sochgan oy",
-                viewers:"883K",
-                favourite: true,
-                like: true,
-                id:5,
-                videoLink:"https://www.youtube.com/watch?v=y5pY5c4kvmQ",
-                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
-                imgSrc: "https://i.mycdn.me/videoPreview?id=1329888168467&type=32&idx=0&tkn=DvT9Ijb6HzLF-t8sxKiHLc8B9z8&fn=external_8",
-            },
-            {
-                name: "Achiq Qismat",
-                viewers:"4M",
-                favourite: true,
-                like: false,
-                id:6,
-                videoLink:"https://www.youtube.com/watch?v=_qyJr4QSqWo",
-                desc:"Yili:2021 Mamlakat:O'zbekiston Yosh:12+ Janr: Uzbek kino / Drama / Melodrama Sifat:HD Ovoz:O'zbek tilida Davomiyligi:1 soat 44 minut",
-                imgSrc: "https://i.ytimg.com/vi/_qyJr4QSqWo/maxresdefault.jpg",
-            },
-            {
-                name: "O'g'ri",
-                viewers:"10M",
-                favourite: false,
-                like: true,
-                id:7,
-                videoLink:"https://www.youtube.com/watch?v=3tW3prt_2_Y",
-                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
-                imgSrc: "https://i.ytimg.com/vi/3tW3prt_2_Y/maxresdefault.jpg",
-            },
-            {
-                name: "Siyosatchi",
-                viewers:"161K",
-                favourite: true,
-                like: true,
-                id:8,
-                videoLink:"https://www.youtube.com/watch?v=B-C5iIq-Ems",
-                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
-                imgSrc: "https://i.ytimg.com/vi/B-C5iIq-Ems/hqdefault.jpg",
-            },
-            {
-                name: "Londonlik kelin",
-                viewers:"3M",
-                favourite: true,
-                like: false,
-                id:9,
-                videoLink:"https://www.youtube.com/watch?v=e5XLVTpxeCU",
-                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
-                imgSrc: "https://i.ytimg.com/vi/e5XLVTpxeCU/maxresdefault.jpg",
-            },
-            {
-                name: "Josus",
-                viewers:"3.7M",
-                favourite: false,
-                like: false,
-                id:10,
-                videoLink:"https://www.youtube.com/watch?v=5OA2Ta1_bhQ",
-                desc:"Some quick example text to build on the card title and make up the bulk of the card's content.",
-                imgSrc: "https://i.ytimg.com/vi/OyecZzpkFMA/hqdefault.jpg",
-            },
-            {
-                name: "Changalzor Farzandi ",
-                viewers:62,
-                favourite: true,
-                like: false,
-                id:11,
-                videoLink:"https://www.youtube.com/watch?v=MqzYpB65AGw",
-                desc:"Jungli Bolasi Hind kino Uzbek tilida 2017 O'zbekcha tarjima kino HD",
-                imgSrc: "https://asilmedia.net/uploads/posts/2021-02/1613849925_maxresdefault.jpg",
-            },
-        ],
+            movies:[ ],
         // qidirish uchun kiritilgan ozgaruvchini saqlab turadi
-        term:'',
+        term:'star wars',
         filter:'all',
+        isLoading: false,
+        limit: 15,
+        page:5,
+        totalPages: 0,
+        moviesCount:0,
         }
     },
 
     methods:{
-      createMovie(item){  
-      this.movies.push(item)
-     },
-     onToggleHandler({id, prop}){
-       
-     this.movies = this.movies.map(item=>{
-        if (item.id==id) {
-         return {...item, [prop]: !item[prop]}
-        }return item
-      })
-      
-      
-     },
-     onRemoveHandler(id){
+    createMovie(item){  
+        this.movies.push(item)
+    },
+    onToggleHandler({id, prop}){
+        this.movies = this.movies.map(item=>{
+            if (item.id==id) {
+            return {...item, [prop]: !item[prop]}
+            }return item
+          })
+    },
+    onRemoveHandler(id){
          this.movies = this.movies.filter(c=>c.id!=id)
-     },
-     onSearchHandler(arr, term){
+    },
+    onSearchHandler(arr, term){
       if(term.length==0){
         return arr
       }
       return arr.filter(c=>c.name.toLowerCase().indexOf(term)>-1)
-     },
-     
-     deleteNotDigits(str) {
+    },
+    deleteNotDigits(str) {
                 // return parseInt(str.replace(/[^\d.]/g, ''))
                 return +(str.replace(/[^\d.]/g, ''))
-            },
-            
-    //  onFilterHandler(arr, filter){
-    //   switch (filter) {
-    //     case "popular":
-    //       return arr.filter(c=>c.like);
-    //       case "mostViewers":
-    //       return arr.filter(c => c.viewers>500);
-                
-    //     default:
-    //       return arr
-    //   }
-    //  },
+    },
     onFilterHandler(arr, filter) {
   switch (filter) {
     case "popular":
@@ -245,16 +152,54 @@ export default {
     default:
       return arr;
   }
-},
-
-     updateFilterHandler(filter){
+    },
+    updateFilterHandler(filter){
       this.filter =filter
-     },
-     updateTermHandler(term){
+    },
+    updateTermHandler(term){
       this.term = term
+    },
+    async fetchMovie(){
+      try {
+        this.isLoading=true
+        const response  = await axios.get(`http://www.omdbapi.com/?s=${this.term}&page=${this.page}&apikey=263d22d8`)
+            const newMovieList = response.data.Search.map(item=>({
+                id: item.imdbID,
+                name: item.Title,
+                viewers: Math.floor(Math.random() * Date.now())/100,
+                favourite: false,
+                like: true,
+                videoLink:`https://www.youtube.com/results?search_query=${item.Title}`,
+                desc: item.Type + " "+ item.Year,
+                imgSrc: item.Poster,
+                infoLink: `https://www.google.com/search?q=${item.Title}`
+            }))
+            this.movies = newMovieList
+            this.moviesCount = response.data.totalResults
+            this.totalPages = Math.ceil(this.moviesCount/this.limit)
+            console.log(this.moviesCount);
+        
+      } catch (error) {
+        console.log(error.message);
+      }finally{
+        this.isLoading = false
+      }
+
+      
+    },
+    changePageHandler(page){
+      this.page = page
+      this.fetchMovie()
+     },
+    },
+    mounted() {
+     this.fetchMovie()
+     },
+     watch:{
+      term(){
+        this.fetchMovie()
+      }
      }
-    }
-    
 }
 </script>
 <style>
@@ -275,4 +220,29 @@ body{
     color: aliceblue;
   }
   
+
+
+  /* Change the background color of the pagination links */
+  .pagination .page-link {
+  /* background-color: #f0ad4e; */
+  /* border-color: #f0ad4e; */
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin: 3px;
+  background-color: transparent;
+}
+
+/* Change the color of the pagination links on hover */
+.pagination .page-link:hover {
+  background-color: #ec971f;
+  border-color: #ec971f;
+}
+
+/* Change the background color of the active pagination link */
+.pagination .page-item.active .page-link {
+  background-color: #c9302c;
+  border-color: #c9302c;
+}
+
 </style>

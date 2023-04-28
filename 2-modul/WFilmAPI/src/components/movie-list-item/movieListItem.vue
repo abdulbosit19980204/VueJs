@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-center align-items-center">
     <input  class="list-group-item-input viewers"  :value="movie.viewers" disabled>
         <button @click="$emit('onToggle', {id: movie.id, prop: 'favourite'})" type="button" class="btn-cookie btn-sm" >
-            <i class="fas fa-heart"></i>
+            <i class="far fa-heart"></i>
         </button>
         <button type="button" class="btn-trash btn-sm" @click="$emit('onRemove', movie.id)"  >
             <i class="fas fa-trash"></i>
@@ -18,7 +18,7 @@
         <i class="far fa-eye"></i>
         </button>
        </a>
-       <a :href="movie.videoLink" target="_blank">
+       <a :href="movie.infoLink" target="_blank">
         <button class="btn-watching">
         <i class="fas fa-circle-info"></i>
         </button>
@@ -42,7 +42,7 @@ export default {
 </script>
 <style scoped >
 .viewers{
-  width: 70px;
+  width: 80px;
   border-radius: 5px;
   text-align: center;
   color: aliceblue;
