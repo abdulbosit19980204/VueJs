@@ -1,11 +1,14 @@
 <template >
-    <div class="fs-3">
-        Login page
-    </div>
+
+        <Login></Login>
+        
 </template>
 <script>
+import {Login} from '@/components'
 export default {
-    
+    components:{
+        Login,
+    }
 }
 </script>
 <style >
