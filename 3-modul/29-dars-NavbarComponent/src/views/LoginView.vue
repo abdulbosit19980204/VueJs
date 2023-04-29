@@ -1,6 +1,6 @@
 <template >
-    <div>
-        <h2>Login page</h2>
+    <div class="fs-3">
+        Login page
     </div>
 </template>
 <script>

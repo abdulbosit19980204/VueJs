@@ -1,6 +1,6 @@
 <template >
-    <div>
-        <h1> Register Page</h1>
+    <div class="fs-3">
+        Register page
     </div>
 </template>
 <script>
