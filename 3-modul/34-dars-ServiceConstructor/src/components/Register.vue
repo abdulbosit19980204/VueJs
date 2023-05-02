@@ -25,7 +25,12 @@ export default {
     methods:{
         submitHandler(e){
             e.preventDefault();
-            this.$store.dispatch('register')
+            const data ={
+                email:"aasa4dsd@jfn.asd",
+                password:"j551d4sfF",
+                username:"sdfsadda",
+            }
+            this.$store.dispatch('register',data)
         }
     }
 }

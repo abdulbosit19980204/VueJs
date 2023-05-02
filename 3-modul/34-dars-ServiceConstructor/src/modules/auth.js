@@ -1,3 +1,4 @@
+import AuthServise from "../service/auth"
 const state = {
     isLoading: false
 }
@@ -7,10 +8,8 @@ const mutations = {
     }
 }
 const actions = {
-    register(context) {
-        setTimeout(() => {
-            context.commit('setLoading')
-        }, 2000);
+    register(context, user) {
+        AuthServise.register(user)
     }
 }
 export default { state, mutations, actions }
