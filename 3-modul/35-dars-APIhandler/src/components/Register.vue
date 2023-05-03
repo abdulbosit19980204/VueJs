@@ -30,7 +30,11 @@ export default {
                 password:"j551d4sfF",
                 username:"sdfsadda",
             }
-            this.$store.dispatch('register',data)
+            this.$store.dispatch('register',data).then((result) => {
+                console.log('USER',result)
+            }).catch((err) => {
+                console.log('Error',err);
+            });
         }
     }
 }
