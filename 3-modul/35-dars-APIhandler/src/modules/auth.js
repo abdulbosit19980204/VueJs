@@ -3,8 +3,14 @@ const state = {
     isLoading: false
 }
 const mutations = {
-    setLoading(state) {
+    registerStart(state) {
         state.isLoading = true
+    },
+    registerSuccess(state) {
+        state.isLoading = false
+    },
+    registerFailure(state) {
+        state.isLoading = false
     }
 }
 const actions = {
