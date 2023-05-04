@@ -5,9 +5,9 @@
                 <img class="mb-4" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 fw-normal mt-3">Register</h1>
 
-                <Input :label="'Name'" :type="text"></Input>
-                <Input :label="'Email address'" :type="email"  ></Input>
-                <Input :label="'Password'" :type="password"  ></Input>
+                <Input :label="'Name'" :type="text"            v-model="username" ></Input>
+                <Input :label="'Email address'" :type="email"  v-model="email" ></Input>
+                <Input :label="'Password'" :type="password"    v-model="password" ></Input>
                 
                 <Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
               </form>
@@ -26,12 +26,13 @@ export default {
         submitHandler(e){
             e.preventDefault();
             const data ={
-                email:"aasa4dsd@jfn.asd",
-                password:"j551d4sfF",
-                username:"sdfsadda",
+                email:this.email,
+                password:this.password,
+                username:this.username,
             }
             this.$store.dispatch('register',data).then((result) => {
                 console.log('USER',result)
+                this.$router.push({name:'home'})
             }).catch((err) => {
                 console.log('Error',err);
             });

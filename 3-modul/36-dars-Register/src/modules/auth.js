@@ -14,7 +14,7 @@ const mutations = {
         state.isLoading = false
         state.user = payload
     },
-    registerFailure(state) {
+    registerFailure(state, payload) {
         state.isLoading = false
         state.errors = payload
     }
