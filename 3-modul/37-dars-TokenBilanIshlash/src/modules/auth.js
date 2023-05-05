@@ -1,4 +1,5 @@
 import AuthServise from "../service/auth"
+import { setItem } from "../helpers/persistaneStorage"
 const state = {
     isLoading: false,
     user: null,
@@ -26,6 +27,8 @@ const actions = {
             AuthServise.register(user).then(response => {
                 // console.log("Response=> ", response.data.user);
                 context.commit('registerSuccess', response.data.user)
+                    // window.localStorage.setItem("token", response.data.user.token)
+                setItem("token", response.data.user.token)
                 resolve(response.data.user)
             }).catch(error => {
                 // console.log("Error=> ", error.response.data);
