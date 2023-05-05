@@ -4,6 +4,8 @@
             <form>
                 <img class="mb-4" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="72" height="72">
                 <h1 class="h3 mb-3 fw-normal mt-3">Register</h1>
+                <ValidationError v-if="ValidationErrors" :ValidationErrors="ValidationErrors"/>
+
 
                 <Input :label="'Name'" :type="text"            v-model="username" ></Input>
                 <Input :label="'Email address'" :type="email"  v-model="email" ></Input>
@@ -16,11 +18,18 @@
    
 </template>
 <script>
+import ValidationError from "@/components/ValidationError.vue"
 export default {
+    components:{
+        ValidationError
+    },
     computed:{
         isLoading(){
             return this.$store.state.auth.isLoading
-        }
+        },
+        ValidationErrors(){
+            return this.$store.state.auth.errors
+        },
     },
     methods:{
         submitHandler(e){
