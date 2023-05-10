@@ -18,18 +18,23 @@
    
 </template>
 <script>
+import {mapState} from 'vuex'
 import ValidationError from "@/components/ValidationError.vue"
 export default {
     components:{
         ValidationError
     },
     computed:{
-        isLoading(){
-            return this.$store.state.auth.isLoading
-        },
-        ValidationErrors(){
-            return this.$store.state.auth.errors
-        },
+        ...mapState({
+        isLoading:state=>state.auth.isLoading,
+        ValidationErrors:state=>state.auth.errors
+      })
+        // isLoading(){
+        //     return this.$store.state.auth.isLoading
+        // },
+        // ValidationErrors(){
+        //     return this.$store.state.auth.errors
+        // },
     },
     methods:{
         submitHandler(e){

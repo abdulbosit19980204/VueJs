@@ -56,13 +56,13 @@ const actions = {
             context.commit('loginStart')
             AuthServise.login(user)
                 .then(response => {
-                    context.commit('registerSuccess', response.data.user)
+                    context.commit('loginSuccess', response.data.user)
                     setItem("token", response.data.user.token)
                     resolve(response.data.user)
                 })
                 .catch(error => {
                     // console.log("Error=> ", error.response.data);
-                    context.commit('registerFailure', error.response.data)
+                    context.commit('loginFailure', error.response.data)
                     reject(error.response.data)
                 })
         })

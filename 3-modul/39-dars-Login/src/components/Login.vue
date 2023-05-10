@@ -4,17 +4,57 @@
       <form>
         <img class="mb-4" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="72" >
         <h1 class="h3 mb-3 fw-normal mt-3">Please sign in</h1>
-        <Input :label="'Email'" :type="email"  ></Input>
-        <Input :label="'Password'" :type="password"  ></Input>
+       <ValidationError v-if="ValidationErrors" :ValidationErrors="ValidationErrors"/>
+
+        <Input :label="'Email'" :type="email" v-model="email"  ></Input>
+        <Input :label="'Password'" :type="password" v-model="password" ></Input>
               
-        <Button type="submit">Login</Button>
+        <Button type="submit" :disabled="isLoading" @click="submitHandler">Login</Button>
       </form>
     </main>
   </div>
 </template>
 <script>
+import {mapState} from 'vuex'
+ import ValidationError from "@/components/ValidationError.vue"
 export default {
-    
+    components:{
+    ValidationError
+  },
+    data(){
+      return{
+        email: '',
+        password:'',
+      }
+    },
+    computed:{
+      ...mapState({
+        isLoading:state=>state.auth.isLoading,
+        ValidationErrors:state=>state.auth.errors
+      })
+        // isLoading(){
+        //     return this.$store.state.auth.isLoading
+        // },
+        // ValidationErrors(){
+        //     return this.$store.state.auth.errors
+        // },
+    },
+    methods:{
+        submitHandler(e){
+            e.preventDefault();
+            const data ={
+                email:this.email,
+                password:this.password,
+                username:this.username,
+            }
+            this.$store.dispatch('login',data).then((result) => {
+                console.log('USER',result)
+                this.$router.push({name:'home'})
+            }).catch((err) => {
+                console.log('Error',err);
+            });
+        }
+    }
 }
 </script>
 <style >
