@@ -6,13 +6,14 @@
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <template v-if="isLoggedIn">
             <div>
-               <strong>
+               <strong class="rounded-pill btn bg-body-tertiary btn-outline-primary">
+               <i class="fas fa-user"></i>
                 {{currentUser.username}}
-                <RouterLink  :to="{name:'login'}" class="me-3 py-2 link-body-emphasis text-decoration-none btn btn-light"> <i class="fas fa-arrow-right-from-bracket"></i> Log out</RouterLink>
+                <RouterLink  :to="{name:'home'}" class="me-3 py-2 link-body-emphasis text-decoration-none btn btn-light"> <i class="fas fa-arrow-right-from-bracket"></i> Log out</RouterLink>
                </strong>
             </div>
         </template>
-        <template v-if="!isLoggedIn">
+        <template v-if="isAnonymous">
             <RouterLink  :to="{name:'login'}" class="me-3 py-2 link-body-emphasis text-decoration-none ">Login <i class="fas fa-right-to-bracket"></i></RouterLink>
             <RouterLink :to="{name:'register'}" class="me-3 py-2 link-body-emphasis text-decoration-none "> Register <i class="fas fa-user-plus"></i></RouterLink>
         </template>
@@ -65,13 +66,18 @@
             
             </div>
         </template>
-
+        <template v-if="isAnonymous">
+            <div>
+                <h3>Foydalanuvchi ro'yxatdan o'tkazilmagan yoki kirilmagan</h3>
+            </div>
+        </template>
 
 
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 import { logo } from '../constants';
+import { gettersTypes } from "@/modules/types";
 export default {
     data(){
         return{
@@ -79,9 +85,10 @@ export default {
         }
     },
     computed:{
-        ...mapState({
-            currentUser: state=>state.auth.user,
-            isLoggedIn: state=>state.auth.isLoggedIn,
+        ...mapGetters({
+            currentUser: gettersTypes.currentUser,
+            isLoggedIn:  gettersTypes.isLoggedIn, 
+            isAnonymous: gettersTypes.isAnonymous,
         })
     },
     methods:{
