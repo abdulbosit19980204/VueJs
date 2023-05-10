@@ -1,5 +1,5 @@
 export const gettersTypes = {
     currentUser: '[auth] currentUser ',
-    isLoggedin: '[auth] isLoggedIn',
+    isLoggedIn: '[auth] isLoggedIn',
     isAnonymous: '[auth] isAnonymous',
 }
