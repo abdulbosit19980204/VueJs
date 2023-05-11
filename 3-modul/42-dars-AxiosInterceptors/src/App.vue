@@ -10,7 +10,10 @@
 import {Navbar} from '@/components';
 import {RouterView} from 'vue-router'
 export default {
-  components:{Navbar,}
+  components:{Navbar,},
+  mounted() {
+    this.$store.dispatch('getUser')
+  },
 }
 </script>
 <style >
