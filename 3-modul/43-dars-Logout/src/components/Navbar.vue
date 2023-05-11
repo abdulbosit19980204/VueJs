@@ -5,13 +5,8 @@
       </a>
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <template v-if="isLoggedIn">
-            <div>
-               <strong class="rounded-pill btn bg-body-tertiary btn-outline-primary">
-               <i class="fas fa-user"></i>
-                {{currentUser.username}}
-                <RouterLink  :to="{name:'home'}" class="me-3 py-2 link-body-emphasis text-decoration-none btn btn-light"> <i class="fas fa-arrow-right-from-bracket"></i> Log out</RouterLink>
-               </strong>
-            </div>
+            <RouterLink  :to="{name:'home'}" class="btn btn-light me-3 py-2 link-body-emphasis text-decoration-none">  {{currentUser.username}}</RouterLink>
+            <a class="btn btn-light" href="#" @click="logout">Logout</a>
         </template>
         <template v-if="isAnonymous">
             <RouterLink  :to="{name:'login'}" class="me-3 py-2 link-body-emphasis text-decoration-none ">Login <i class="fas fa-right-to-bracket"></i></RouterLink>
@@ -104,6 +99,9 @@ export default {
     methods:{
         toHomeHandler(){
             return this.$router.push({name:"home"})
+        },
+        logout(){
+            return this.$store.dispatch('logout')
         }
     },
 }
