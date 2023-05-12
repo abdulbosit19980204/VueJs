@@ -61,7 +61,7 @@
             
             </div>
         </template>
-        <template v-if="isAnonymous">
+        <!-- <template v-if="isAnonymous">
            <div class="container my-5">
                 <div class="bg-body-tertiary p-5 rounded">
                 <div class="col-sm-8 py-5 mx-auto">
@@ -74,7 +74,7 @@
                 </div>
                 </div>
             </div>
-        </template>
+        </template> -->
 
 
 </template>
