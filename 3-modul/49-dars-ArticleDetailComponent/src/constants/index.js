@@ -1,0 +1,1 @@
+export const logo = 'https://www.pngkit.com/png/full/364-3642224_clarity-ecommerce-logo-logo-e-commerce-png.png'
