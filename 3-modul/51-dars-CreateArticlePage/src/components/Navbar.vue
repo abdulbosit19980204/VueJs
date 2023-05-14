@@ -5,7 +5,7 @@
       </a>
         <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <template v-if="isLoggedIn">
-            <RouterLink  :to="{name:'create-article'}" class="btn btn-light me-3 py-2 link-body-emphasis text-decoration-none"><i class="fas fa-plus"></i> Add article</RouterLink>
+            <RouterLink  :to="{name:'create-article'}" class="btn btn-light me-3 py-2 link-body-emphasis text-decoration-none"><i class="fas fa-plus"></i> Create article</RouterLink>
             <RouterLink  :to="{name:'home'}" class="btn btn-light me-3 py-2 link-body-emphasis text-decoration-none"><i class="far fa-user"> </i>  {{currentUser.username}}</RouterLink>
             <a class="btn btn-light" href="#" @click="logout">Logout</a>
         </template>
