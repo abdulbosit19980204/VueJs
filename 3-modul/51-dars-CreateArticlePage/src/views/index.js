@@ -9,3 +9,6 @@ from './LoginView.vue'
 
 export { default as ArticleDetailView }
 from './ArticleDetailView.vue'
+
+export { default as CreateArticleView }
+from './CreateArticleView.vue'
