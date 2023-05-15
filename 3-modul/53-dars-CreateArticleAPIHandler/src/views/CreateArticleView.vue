@@ -5,11 +5,12 @@
         <Input type='text' label='title' v-model="title"/>
         <TextArea type='text' label='description' v-model="description"/>
         <TextArea type='text' label='Body' v-model="body"/>
-        <Button @click="CreateArticleHandler">Create article</Button>
+        <Button @click="CreateArticleHandler" :disabled="isLoading">Create article</Button>
     </form>
     </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
     data() {
         return {
@@ -27,8 +28,14 @@ export default {
                 body: this.body,
                 tagList: [],
             }
-            console.log(article);
+            this.$store.dispatch('createArticle', article)
+            this.$router.push('/')
         },
+    },
+    computed:{
+        ...mapState({
+            isLoading: state=> state.control.isLoading
+            }),
     }
 }
 </script>
