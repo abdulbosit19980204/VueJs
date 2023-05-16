@@ -12,13 +12,18 @@
               <p class="card-text">{{article.body.slice(0,250)}}</p>
               <div class="d-flex justify-content-between align-items-center card-footer">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" @click='navigateHandler'>Read article</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" @click='navigateHandler'><i class="far fa-eye"></i> Read</button>
                   <button v-if="article.author.username == user.username"
                    type="button" 
-                   class="btn btn-sm btn-danger"
+                   class="btn btn-sm btn-outline-danger"
                    @click='deleteArticleHandler'
                    :disabled='isLoading'
-                   >Delete</button>
+                   ><i class="fas fa-trash-can"> </i>  Delete</button>
+                  <button v-if="article.author.username == user.username"
+                   type="button" 
+                   class="btn btn-sm btn-outline-warning"
+                 @click='navigateEditHandler'
+                 ><i class="fas fa-pen-to-square"> </i>  Edit</button>
                 </div>
                 <small class="text-body-secondary">{{new Date(article.createdAt).toLocaleDateString('us')}}</small>
                </div>
@@ -52,6 +57,9 @@ export default {
         }).catch(() => {
           
         });
+      },
+      navigateEditHandler(){
+        return this.$router.push(`/edit-article/${this.article.slug}`)
       }
     },
 }

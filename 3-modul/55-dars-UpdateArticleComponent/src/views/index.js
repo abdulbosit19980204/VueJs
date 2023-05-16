@@ -12,3 +12,6 @@ from './ArticleDetailView.vue'
 
 export { default as CreateArticleView }
 from './CreateArticleView.vue'
+
+export { default as EditArticleView }
+from './EditArticleView.vue'
