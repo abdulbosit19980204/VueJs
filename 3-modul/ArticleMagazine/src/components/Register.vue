@@ -10,7 +10,12 @@
                 <Input :label="'Name'" :type="text"            v-model="username" ></Input>
                 <Input :label="'Email address'" :type="email"  v-model="email" ></Input>
                 <Input :label="'Password'" :type="password"    v-model="password" ></Input>
+                <Input :label="'Image'" :type="text"    v-model="image" ></Input>
+                <TextArea :label="'Bio'" v-model="bio"></TextArea>
                 
+                <InputFile @change="previewFiles"  />
+
+              
                 <Button type="submit" :disabled="isLoading" @click="submitHandler">Register</Button>
               </form>
         </main>
@@ -37,12 +42,19 @@ export default {
         // },
     },
     methods:{
+        previewFiles(event) {
+            console.log(event.target.files[0].name);
+         
+        },
+
         submitHandler(e){
             e.preventDefault();
             const data ={
                 email:this.email,
                 password:this.password,
                 username:this.username,
+                bio: this.bio,
+                image: this.image,
             }
             this.$store.dispatch('register',data).then((result) => {
                 console.log('USER',result)

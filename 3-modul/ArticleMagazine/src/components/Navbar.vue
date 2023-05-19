@@ -4,6 +4,7 @@
      <a class="navbar-brand" @click="toHomeHandler()">
      <img :src="logo" alt="logo" class="w-25" @click="toHomeHandler()">
     </a>
+   <userImage :src="src" :alt="'UserImage'"/>
      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
