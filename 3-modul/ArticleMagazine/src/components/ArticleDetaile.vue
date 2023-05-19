@@ -1,6 +1,6 @@
 <template >
    
-    <div v-if="article" class="container">
+    <div v-if="article" class="container text-light">
         <div class="row">
             <div class="col-12">
                 <p class="fs-2">

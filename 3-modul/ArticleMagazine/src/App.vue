@@ -1,9 +1,16 @@
 <template >
-  <div>
-    <div class="container">
+  <div class="container">
+        <div class="row d-block">
+          
       <Navbar/>
+        </div> <br><br>
+        <div class="row mt-5">
+          
       <RouterView/>
-    </div>
+        </div>
+     
+   
+   
   </div>
 </template>
 <script>
@@ -17,5 +24,9 @@ export default {
 }
 </script>
 <style >
+  body{
+    background: #1E1E1E;
+    /* background: rgba(0, 0, 0, 0.5); */
+  }
   
 </style>

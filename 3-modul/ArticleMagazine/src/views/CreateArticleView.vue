@@ -1,5 +1,5 @@
 <template >
-        <p class="text-center display-2">Create article</p>
+        <p class="text-center display-2 text-light">Create article</p>
     <ArticleForm :initialValue="initialValue" :onSubmitHandler="CreateArticleHandler" :clickText="'Create article'"/>
 </template>
 <script>

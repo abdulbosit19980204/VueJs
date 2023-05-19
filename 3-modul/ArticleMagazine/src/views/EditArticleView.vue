@@ -1,5 +1,5 @@
 <template >
-     <p class="text-center display-2">Edit article</p>
+     <p class="text-center text-light display-2">Edit article</p>
 	  <Loader v-if="isLoading" class="offset-md-6"/>
 	<ArticleForm
 		v-else-if="!isLoading && article"

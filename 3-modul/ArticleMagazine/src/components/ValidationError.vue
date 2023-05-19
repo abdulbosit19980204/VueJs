@@ -1,6 +1,6 @@
 <template >
     <ul class="list-group">
-        <li class="list-group-item list-group-item-danger" v-for='errorMessage in errorMessages' ::key="errorMessage">
+        <li class="list-group-item list-group-item-danger" v-for='errorMessage in errorMessages' :key="errorMessage">
         {{errorMessage}}
         </li>
     </ul>

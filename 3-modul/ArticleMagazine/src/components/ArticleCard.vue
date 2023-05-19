@@ -1,15 +1,16 @@
 <template lang="">
-        <div class="col">
+        <div class="col article-card">
           <div class="card shadow-none border-0">
-            <img src="https://texts.com/ogcover.png" alt="" class="bd-placeholder-img card-img-top" >
+            <img src="https://support.remarkable.com/servlet/rtaImage?eid=ka07Q000001ter2&feoid=00N7Q00000CxZiV&refid=0EM7Q000000hVzt" alt="" class="bd-placeholder-img card-img-top" >
          
-           <div class="card-body">
+           <div class="card-body bg-dark">
            <div class="text-success btn-group ">
               <small class="my-0 btn btn-outline-light  active">{{article.author.username}}</small>
-              <small class="text-warning btn btn-outline-light ">{{new Date(article.updatedAt).toLocaleString('us')}}</small>
+              <small class="text-warning btn btn-outline-light">{{new Date(article.updatedAt).toLocaleString('us')}}</small>
               </div>
-              <p class="card-title fw-bold">{{article.title}}</p>
-              <p class="card-text">{{article.body.slice(0,250)}}</p>
+              <small class="text-light btn btn-outline-light ms-1"><i class="far fa-bookmark"></i></small>
+              <p class="card-title fw-bold text-light pt-2">{{article.title.slice(0,40)}}...</p>
+              <p class="card-text text-secondary">{{article.body.slice(0,250)}}</p>
               <div class="d-flex justify-content-between align-items-center card-footer">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary" @click='navigateHandler'><i class="far fa-eye"></i> Read</button>
@@ -25,7 +26,7 @@
                  @click='navigateEditHandler'
                  ><i class="fas fa-pen-to-square"> </i>  Edit</button>
                 </div>
-                <small class="text-body-secondary">{{new Date(article.createdAt).toLocaleDateString('us')}}</small>
+                <small class="text-light">{{new Date(article.createdAt).toLocaleDateString('us')}}</small>
                </div>
             </div>
           </div>
@@ -64,6 +65,10 @@ export default {
     },
 }
 </script>
-<style lang="">
-    
+<style >
+  .article-card{
+    padding: 16px;
+    background: #181818;
+    border-radius: 6.38px;
+  }
 </style>

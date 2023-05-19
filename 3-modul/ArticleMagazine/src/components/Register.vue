@@ -3,7 +3,7 @@
         <main class="form-signin w-25 m-auto mt-5">
             <form>
                 <img class="mb-4" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" width="72" height="72">
-                <h1 class="h3 mb-3 fw-normal mt-3">Register</h1>
+                <h1 class="h3 mb-3 fw-normal mt-3 text-light">Register</h1>
                 <ValidationError v-if="ValidationErrors" :ValidationErrors="ValidationErrors"/>
 
 

@@ -1,4 +1,5 @@
 <template >
+      <h1 class="text-light">Articles</h1>
     <div class="fs-6" >
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <Loader v-if='isLoading' class='offset-md-6'/>
